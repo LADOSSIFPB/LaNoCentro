@@ -1,3 +1,7 @@
 Instalar o MySQL;
 
 Configurar o usuário root com a senha ifpbinfo;
+sudo mysql -u root -p
+[senha_do_computador]
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'ifpbinfo';
+sudo service mysql restart

@@ -106,11 +106,6 @@ INSERT INTO `lanocentro`.`tb_empresa`
 /*!40000 ALTER TABLE `tb_empresa` ENABLE KEYS */;
 UNLOCK TABLES;
 
-INSERT INTO `lanocentro`.`tb_empresa` 
-  (`nome`, `fk_id_natureza`, `fk_id_endereco`, `email`, `telefone`, `instagram`, `facebook`, `is_delivery`, `is_deleted`, `dt_insercao`) 
-  VALUES (1,'Quintanda da Verinha',1,1,'emp3@a.com','5583','emp3','emp3', '1','0'),
-        (2,'Calças da moda',2,1,'emp4@a.com','5583','emp4','emp4', '1','0');
-
 --
 -- Table structure for table `tb_empresa_produto`
 --
