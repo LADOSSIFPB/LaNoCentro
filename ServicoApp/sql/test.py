@@ -1,23 +1,33 @@
+import os
+import sqlite3
 import mysql.connector
-from mysql.connector import Error
+import io
+import datetime
+import csv
+import random
 
-try:
-    connection = mysql.connector.connect(host='localhost',
-                                         database='lanocentro',
-                                         user='root',
-                                         password='ifpbinfo')
-    if connection.is_connected():
-        db_Info = connection.get_server_info()
-        print("Connected to MySQL Server version ", db_Info)
-        cursor = connection.cursor()
-        cursor.execute("select database();")
-        record = cursor.fetchone()
-        print("You're connected to database: ", record)
+class ConnectMysql(object):
 
-except Error as e:
-    print("Error while connecting to MySQL", e)
-finally:
-    if (connection.is_connected()):
-        cursor.close()
-        connection.close()
-        print("MySQL connection is closed")
+    def __init__(self, db_name=""):
+        try:
+            # conectando...
+            self.conn = mysql.connector.connect(host="localhost", user="root", passwd="ifpbinfo", database="lanocentro")
+            self.cursor = self.conn.cursor()
+            print("Banco:", self.conn.database)
+            self.cursor.execute('SELECT VERSION()')
+            self.data = self.cursor.fetchone()
+            print("MySQL version: %s" % self.data)
+        except sqlite3.Error:
+            print("Erro ao abrir banco.")
+
+    def CommitDb(self):
+        if self.conn:
+            self.conn.commit()
+
+    def CloseDb(self):
+        if self.conn:
+            self.conn.close()
+            print("Conexão fechada.")
+
+if __name__ == '__main__':
+    self.db = ConnectMysql()
