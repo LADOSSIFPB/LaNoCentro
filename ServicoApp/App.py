@@ -9,8 +9,10 @@ from resources.empresa import *
 from resources.cidade import *
 from resources.estado import *
 from resources.natureza import *
+from resources.hello_world import *
 
 app = Flask(__name__)
+
 
 # Settings
 app.config['DEBUG'] = DEBUG
@@ -31,6 +33,8 @@ api_bp = Blueprint('api', __name__)
 api = Api(api_bp, prefix='/lanocentro/api')
 
 # Recursos
+api.add_resource(HelloWorld, '/')
+
 api.add_resource(EnderecosResource, '/enderecos')
 api.add_resource(EnderecoResource, '/enderecos/<endereco_id>')
 
