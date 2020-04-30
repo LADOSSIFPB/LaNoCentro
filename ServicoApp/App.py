@@ -42,6 +42,7 @@ api.add_resource(ContatosResource, '/contatos')
 api.add_resource(ContatoResource, '/contatos/<contato_id>')
 
 api.add_resource(EmpresasResource, '/empresas')
+api.add_resource(EmpresaResource, '/empresas/<empresa_id>')
 api.add_resource(EmpresaNomeResource, '/empresas/nome/<nome>')
 
 api.add_resource(CidadesResource, '/cidades')
