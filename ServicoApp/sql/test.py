@@ -1,10 +1,5 @@
 import os
-import sqlite3
 import mysql.connector
-import io
-import datetime
-import csv
-import random
 
 class ConnectMysql(object):
 

@@ -17,6 +17,22 @@ angular-aria@^1.7.9:
   resolved "https://registry.yarnpkg.com/angular-aria/-/angular-aria-1.7.9.tgz#90c61895ffbd876e95915222b32a7bd0070af7e3"
   integrity sha512-luI3Jemd1AbOQW0krdzfEG3fM0IFtLY0bSSqIDEx3POE0XjKIC1MkrO8Csyq9PPgueLphyAPofzUwZ8YeZ88SA==
 
+angular-br-filters@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/angular-br-filters/-/angular-br-filters-0.7.0.tgz#225bd82ef68e46ce8610d9e6d57cc6656c3f7f14"
+  integrity sha1-IlvYLvaORs6GENnm1XzGZWw/fxQ=
+  dependencies:
+    br-masks "^0.5.0"
+
+angular-input-masks@^4.4.1:
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/angular-input-masks/-/angular-input-masks-4.4.1.tgz#bc43e76095699ff2853e04b14a17eea02f9916e4"
+  integrity sha512-gY1rhev/07EO82UU6H1ENdYdI2yzfYXIb04JOW9Un4pWXhQ7sfsLp/jx10D8QZs7qwEa3/vHU3RdHLhpBtkjYA==
+  dependencies:
+    br-validations "^0.3.1"
+    date-fns "2.0.0-alpha.7"
+    string-mask "^0.3.0"
+
 angular-material-data-table@^0.10.10:
   version "0.10.10"
   resolved "https://registry.yarnpkg.com/angular-material-data-table/-/angular-material-data-table-0.10.10.tgz#229b402745ec1a146f07da8d1e526be6540849ee"
@@ -84,6 +100,23 @@ bootstrap@^4.4.1:
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.4.1.tgz#8582960eea0c5cd2bede84d8b0baf3789c3e8b01"
   integrity sha512-tbx5cHubwE6e2ZG7nqM3g/FZ5PQEDMWmMGNrCUBVRPHXTJaH7CBDdsLeu3eCh3B1tzAxTnAbtmrzvWEvT2NNEA==
 
+br-masks@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/br-masks/-/br-masks-0.5.0.tgz#df5691a0004515297858db5b9f0a7dd531ad95dc"
+  integrity sha1-31aRoABFFSl4WNtbnwp91TGtldw=
+  dependencies:
+    string-mask "^0.3.0"
+
+br-validations@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/br-validations/-/br-validations-0.3.1.tgz#4e45a4e074adaeea2b7e088bc0e37ade9b76364d"
+  integrity sha1-TkWk4HStruorfgiLwON63pt2Nk0=
+
+date-fns@2.0.0-alpha.7:
+  version "2.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.0.0-alpha.7.tgz#245ad16f95764eababfb2c0a41fd5d033c20e57a"
+  integrity sha1-JFrRb5V2Tqur+ywKQf1dAzwg5Xo=
+
 debug@^2.2.0:
   version "2.6.9"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
@@ -137,6 +170,11 @@ popper.js@^1.16.1:
   version "1.16.1"
   resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.1.tgz#2a223cb3dc7b6213d740e40372be40de43e65b1b"
   integrity sha512-Wb4p1J4zyFTbM+u6WuO4XstYx4Ky9Cewe4DWrel7B0w6VVICvPwdOpotjzcf6eD8TsckVnIMNONQyPIUFOUbCQ==
+
+string-mask@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/string-mask/-/string-mask-0.3.0.tgz#9e7244b87bb2f6f9647e2ac98f96fa1a57c21198"
+  integrity sha1-nnJEuHuy9vlkfirJj5b6GlfCEZg=
 
 ui-leaflet@^1.0.3:
   version "1.0.3"

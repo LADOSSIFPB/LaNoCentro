@@ -95,7 +95,8 @@
                 <th md-column>Natureza</th>
                 <th md-column>Município</th>
                 <th md-column>UF</th>
-                <th md-column>E-mail</th>
+                <th md-column>Telefone</th>
+                <th md-column>Delivery</th>
                 <th md-column>Instagram</th>
                 <th md-column>Facebook</th>
               </tr>
@@ -107,7 +108,8 @@
                 <td md-cell>{{empresa.natureza.tipo | uppercase}}</td>
                 <td md-cell>{{empresa.endereco.cidade.nome | uppercase}}</td>
                 <td md-cell>{{empresa.endereco.estado.nome | uppercase}}</td>
-                <td md-cell>{{empresa.email | uppercase}}</td>
+                <td md-cell>{{empresa.telefone | brPhoneNumber}}</td>
+                <td md-cell>{{empresa.isDelivery | yesNo}}</td>
                 <td md-cell>{{empresa.instagram | uppercase}}</td>
                 <td md-cell>{{empresa.facebook | uppercase}}</td>
               </tr>
@@ -162,7 +164,8 @@
             <!-- Telefone -->
             <md-input-container class="md-icon-float md-block">
               <label>Telefone (Whatsapp)</label>
-              <input ng-model="contato.telefone" name="telefone" type="text" required>
+              <input ng-model="contato.telefone" name="telefone" type="text"
+                ui-br-phone-number-mask="areaCode" required>
               <div ng-messages="enviarContatoForm.telefone.$error" role="alert">
                 <div ng-messages-include="messages.html"></div>
               </div>
@@ -215,7 +218,7 @@
       <!--Grid row-->
       <div class="row">
 
-        <!--Grid column-->
+        <!--Grid column
         <div class="col-lg-6 col-md-6 mb-4">
           <a href="http://www.guarabira.pb.gov.br/">
             <div class="view overlay z-depth-1-half">
@@ -224,7 +227,7 @@
             </div>
           </a>
         </div>
-        <!--Grid column-->
+        -->
 
         <!--Grid column-->
         <div class="col-lg-6 col-md-6 mb-4">

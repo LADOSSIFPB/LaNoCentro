@@ -19,11 +19,16 @@ var empresaFactory = function($http, serviceCfg) {
     return $http.get(baseUrl + "/empresas/nome/" + encodeURI(nome));
   }
 
+  var _atualizar = function(empresa) {
+    return $http.put(baseUrl + "/empresa", empresa);
+  };
+
   return {
     cadastrar: _cadastrar,
     listar: _listar,
     pesquisarPorId: _pesquisarPorId,
-    buscarPorNome: _buscarPorNome
+    buscarPorNome: _buscarPorNome,
+    atualizar:_atualizar
   };
 }
 
