@@ -1,6 +1,6 @@
 from flask_restful import Resource, marshal_with, reqparse, current_app, abort, marshal
 from common.database import db
-from sqlalchemy import exc
+from sqlalchemy import exc, desc
 from models.contato import ContatoModel, contato_campos
 
 parser = reqparse.RequestParser()
@@ -8,6 +8,7 @@ parser.add_argument('nome', required=True, help="Especifique um nome válido par
 parser.add_argument('email', required=True, help="Especifique um email válido para o Contato.")
 parser.add_argument('telefone', required=True, help="Especifique um telefone válido para o Contato.")
 parser.add_argument('descricao', required=False, help="Especifique uma descrição válida para o Contato.")
+parser.add_argument('isAtendido', required=False, help="Especifique uma situação de atendido válido para a Empresa.")
 
 
 class ContatosResource(Resource):
@@ -16,6 +17,7 @@ class ContatosResource(Resource):
     def get(self):
         current_app.logger.info("Get - Contato")
         contatos = ContatoModel.query\
+            .order_by(desc(ContatoModel.dt_insercao))\
             .all()
         return contatos, 200
 
@@ -32,8 +34,9 @@ class ContatosResource(Resource):
             email = args['email']
             telefone = args['telefone']
             descricao = args['descricao']
+            is_atendido = False
 
-            endereco = ContatoModel(nome, email, telefone, descricao)
+            endereco = ContatoModel(nome, email, telefone, descricao, is_atendido)
 
             # Criação do Contato.
             db.session.add(endereco)
