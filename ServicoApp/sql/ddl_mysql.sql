@@ -52,6 +52,8 @@ CREATE TABLE `tb_contato` (
   `email` varchar(255) NOT NULL,
   `telefone` varchar(13) NOT NULL,
   `descricao` text,
+  `is_atendido` BOOLEAN DEFAULT 0,
+  `dt_insercao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -62,7 +64,10 @@ CREATE TABLE `tb_contato` (
 
 LOCK TABLES `tb_contato` WRITE;
 /*!40000 ALTER TABLE `tb_contato` DISABLE KEYS */;
-INSERT INTO `tb_contato` VALUES (1,'João da Fruta','jf@gmail.com','5583234567890','Comericiante autônomo.');
+
+INSERT INTO `lanocentro`.`tb_contato` (`nome`, `email`, `telefone`, `descricao`, `is_atendido`) 
+VALUES ('João da Fruta','jf@gmail.com','5583234567890','Comericiante autônomo.','0');
+
 /*!40000 ALTER TABLE `tb_contato` ENABLE KEYS */;
 UNLOCK TABLES;
 
