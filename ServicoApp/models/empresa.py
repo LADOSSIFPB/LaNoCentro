@@ -55,4 +55,4 @@ class EmpresaModel(db.Model):
         self.is_delivery = is_delivery
 
     def __str__(self):
-        return '<Empresa %r>'%(self.nome)
+        return '<Empresa %r>'%(self.nome) 
