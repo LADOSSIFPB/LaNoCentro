@@ -44,6 +44,7 @@ class ContatosResource(Resource):
 
         except exc.SQLAlchemyError:
             current_app.logger.error("Exceção")
+            current_app.logger.error(e)
             return 500
 
         return 204

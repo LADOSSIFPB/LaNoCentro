@@ -13,7 +13,7 @@ parser.add_argument('email', required=True, help="Especifique um e-mail válido 
 parser.add_argument('telefone', required=True, help="Especifique um telefone válido para a Empresa.")
 parser.add_argument('instagram', required=False, help="Especifique um instagram válido para a Empresa.")
 parser.add_argument('facebook', required=False, help="Especifique um facebook válido para a Empresa.")
-parser.add_argument('isDelivery', required=True, help="Especifique um Delivery válido para a Empresa.")
+parser.add_argument('isDelivery', type=bool, required=True, help="Especifique um Delivery válido para a Empresa.")
 
 
 class EmpresasResource(Resource):
@@ -41,7 +41,10 @@ class EmpresasResource(Resource):
             telefone = args['telefone']
             instagram = args['instagram']
             facebook = args['facebook']
-            is_delivery = args['isDelivery']         
+            is_delivery = args['isDelivery']
+            
+            if (is_delivery is None):
+                is_delivery = False        
 
             # Recovering existing resources
             endereco = EnderecoModel.query.filter_by(id=endereco_id).first()
@@ -53,8 +56,9 @@ class EmpresasResource(Resource):
             db.session.add(empresa)
             db.session.commit()
 
-        except exc.SQLAlchemyError:
+        except exc.SQLAlchemyError as e:
             current_app.logger.error("Exceção")
+            current_app.logger.error(e)
             return 404
 
         return marshal(empresa, empresa_campos), 201

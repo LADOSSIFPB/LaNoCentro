@@ -2,6 +2,8 @@
  *  Funções de gerenciamento do Toast.
  */
 app.factory("toastUtil", function ($mdToast) {
+    let position = "bottom right";
+    let timeDelay = 10000;
     return {
 
         showErrorToast: function (error={}) {
@@ -17,9 +19,9 @@ app.factory("toastUtil", function ($mdToast) {
             $mdToast.show(
                 $mdToast.simple()
                 .textContent(mensagem)
-                .position('top right')
-                .action('Ok')
-                .hideDelay(6000)
+                .position(position)
+                .action('OK')
+                .hideDelay(timeDelay)
             );
 
             return false;
@@ -29,9 +31,9 @@ app.factory("toastUtil", function ($mdToast) {
             $mdToast.show(
                 $mdToast.simple()
                 .textContent(message)
-                .position('top right')
+                .position(position)
                 .action('OK')
-                .hideDelay(6000)
+                .hideDelay(timeDelay)
             );
 
             return true;
@@ -41,9 +43,9 @@ app.factory("toastUtil", function ($mdToast) {
             $mdToast.show(
                 $mdToast.simple()
                 .textContent(message)
-                .position('top right')
+                .position(position)
                 .action('OK')
-                .hideDelay(6000)
+                .hideDelay(timeDelay)
             );
 
             return true;
@@ -52,9 +54,9 @@ app.factory("toastUtil", function ($mdToast) {
           for (mensagem of errors) {
             var toast = $mdToast.simple()
               .textContent(mensagem)
-              .position('top right')
+              .position(position)
               .action('OK')
-              .hideDelay(6000);
+              .hideDelay(timeDelay);
             $mdToast.show(toast);
           }
         }

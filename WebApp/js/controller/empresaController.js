@@ -22,6 +22,10 @@ var empresaController = function($scope, $mdToast, $state,
         endereco.id = enderecoResponse.id;
         empresa.endereco = endereco;
 
+        if (!(empresa.isDelivery)) {
+          empresa.isDelivery = false;
+        }
+
         // Cadastrar empresa com o endereço
         cadastrarEmpresa(empresa);
       })

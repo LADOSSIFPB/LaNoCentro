@@ -1,0 +1,70 @@
+<!--Grid row-->
+<md-card>
+  <md-table-container>
+    <!-- Cabeçalho de opções -->
+    <md-card-header>
+      <md-card-avatar>
+        <ng-md-icon icon="shopping_cart" size="42"></ng-md-icon>
+      </md-card-avatar>
+
+      <md-card-header-text>
+        <span class="md-title">Empresas</span>
+        <span class="md-subhead">
+          Digite o nome da Empresa no campo abaixo para buscar.
+        </span>
+      </md-card-header-text>
+
+      <md-card-actions layout="row">
+        <md-card-icon-actions>
+        </md-card-icon-actions>
+      </md-card-actions>
+    </md-card-header>
+
+    <md-toolbar class="md-table-toolbar md-default">
+      <div class="md-toolbar-tools">
+
+        <ng-md-icon icon="search" size="32"></ng-md-icon>
+
+        <div class="toolbar-input" flex>
+          <input type="text" ng-model="nome" ng-keyup="pesquisar(nome)" placeholder="Busque uma Empresa">
+        </div>
+
+        <md-button aria-label="Limpar Busca" ng-click="limparBusca()">
+          <md-tooltip md-direction="bottom">Limpar Busca</md-tooltip>
+          <ng-md-icon icon="clear" size="32"></ng-md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <!-- Tabela -->
+    <table md-table md-row-select ng-model="selectedEmpresa">
+      <thead md-head>
+        <tr md-row>
+          <th md-column>Nome</th>
+          <th md-column>Natureza</th>
+          <th md-column>Município</th>
+          <th md-column>UF</th>
+          <th md-column>Telefone</th>
+          <th md-column>Delivery</th>
+          <th md-column>Instagram</th>
+          <th md-column>Facebook</th>
+        </tr>
+      </thead>
+
+      <tbody md-body>
+        <tr md-row md-select="empresa" md-on-select="detalharEmpresa" md-select-id="empresa.id" md-auto-select ng-repeat="empresa in empresas">
+          <td md-cell>{{empresa.nome | uppercase}}</td>
+          <td md-cell>{{empresa.natureza.tipo | uppercase}}</td>
+          <td md-cell>{{empresa.endereco.cidade.nome | uppercase}}</td>
+          <td md-cell>{{empresa.endereco.estado.nome | uppercase}}</td>
+          <td md-cell>{{empresa.telefone | brPhoneNumber}}</td>
+          <td md-cell>{{empresa.isDelivery | yesNo}}</td>
+          <td md-cell>{{empresa.instagram | uppercase}}</td>
+          <td md-cell>{{empresa.facebook | uppercase}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </md-table-container>
+  <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{empresas.length}}" md-page-select></md-table-pagination>
+</md-card>
+<!--Grid row-->
