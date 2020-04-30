@@ -58,7 +58,7 @@ class EmpresasResource(Resource):
             return 404
 
         return marshal(empresa, empresa_campos), 201
-# GET /cronogramas/<id>
+# GET /empresas/<id> 
 class EmpresaResource(Resource):
     @marshal_with(empresa_campos)
     def get(self, empresa_id):
