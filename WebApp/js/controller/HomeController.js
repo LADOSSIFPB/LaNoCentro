@@ -23,7 +23,7 @@ var homeController = function($scope, $mdToast, $state,
           $scope.empresas = response.data;
         })
         .catch(function(error) {
-          toastUtil.showToast('Problema para pesquisar a(s) Empresa(s).');
+          toastUtil.showToast('Problema ao pesquisar a(s) Empresa(s).');
         });
     }
   };
@@ -54,8 +54,8 @@ var homeController = function($scope, $mdToast, $state,
         toastUtil.showSuccessToast('O Contato foi enviado com sucesso. Nossa equipe em breve entrará em contato.');
       })
       .catch(function(error) {
-        let message = error.data;
-        toastUtil.showErrosValidation(errors);
+        let message = error.data.message;
+        toastUtil.showErrosValidation(message);
       });
   }
 

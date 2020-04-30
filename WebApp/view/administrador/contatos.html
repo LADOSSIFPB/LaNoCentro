@@ -45,6 +45,8 @@
                       <th md-column>Nome</th>
                       <th md-column>Telefone</th>
                       <th md-column>E-mail</th>
+                      <th md-column>Descrição</th>
+                      <th md-column>Atendido</th>
                     </tr>
                 </thead>
 
@@ -52,8 +54,15 @@
                     <tr md-row md-select="contato" md-on-select="detalharContato" md-select-id="contato.id" md-auto-select ng-repeat="contato in contatos">
                       <td md-cell>{{contato.id}}</td>
                       <td md-cell>{{contato.nome | uppercase}}</td>
-                      <td md-cell>{{contato.telefone | uppercase}}</td>
+                      <td md-cell>
+                        <a href="https://api.whatsapp.com/send?phone=55{{contato.telefone}}"
+                          target="_blank">
+                          {{contato.telefone | brPhoneNumber}}
+                        </a>
+                      </td>
                       <td md-cell>{{contato.email | uppercase}}</td>
+                      <td md-cell>{{contato.descricao | uppercase}}</td>
+                      <td md-cell>{{contato.isAtendido | yesNo}}</td>
                     </tr>
                 </tbody>
             </table>

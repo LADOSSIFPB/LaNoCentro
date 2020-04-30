@@ -41,6 +41,13 @@ var empresasController = function($scope, $mdToast, empresaApi) {
     };
 
   $scope.listar();
+
+  // Paginação da tabela.
+  $scope.query = {
+    order: 'nome',
+    limit: 25,
+    page: 1
+  };
 }
 
 app.controller('EmpresasController', empresasController);

@@ -53,12 +53,13 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
         templateUrl: 'view/administrador/empresas.html',
         controller: 'EmpresasController'
       })
-      // Empresas
+      // Empresa - Editar
       .state('administrador.empresa-editar', {
-        url: '/empresas',
-        title: 'Empresas',
+        url: '/empresa/:id',
+        title: 'Editar Empresa',
         templateUrl: 'view/administrador/empresa-editar.html',
-        controller: 'EmpresasController'
+        controller: 'EmpresaEditarController',
+        controllerAs: 'EmpresaEditar'
       })
       // Contatos
       .state('administrador.contatos', {

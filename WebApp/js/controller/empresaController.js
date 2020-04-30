@@ -27,8 +27,8 @@ var empresaController = function($scope, $mdToast, $state,
       })
       .catch(function(error) {
         // Exibir erros de validação do serviço.
-        let errors = error.data.errors;
-        toastUtil.showErrosValidation(errors);
+        let message = error.data.message;
+        toastUtil.showErrosValidation(message);
       });
   };
 
@@ -48,8 +48,8 @@ var empresaController = function($scope, $mdToast, $state,
       })
       .catch(function(error) {
         // Exibir erros de validação do serviço.
-        let errors = error.data.errors;
-        toastUtil.showErrosValidation(errors);
+        let message = error.data.message;
+        toastUtil.showErrosValidation(message);
       });
   }
 
@@ -61,7 +61,8 @@ var empresaController = function($scope, $mdToast, $state,
                 $scope.naturezas = response.data;
             })
             .catch(function (error) {
-                toastUtil.showErrorToast(error);
+              let message = error.data.message;
+              toastUtil.showErrosValidation(message);
             });
 
         estadoApi.listar()
@@ -69,7 +70,8 @@ var empresaController = function($scope, $mdToast, $state,
                 $scope.estados = response.data;
             })
             .catch(function (error) {
-                toastUtil.showErrorToast(error);
+              let message = error.data.message;
+              toastUtil.showErrosValidation(message);
             });
 
         cidadeApi.listar()
@@ -77,7 +79,8 @@ var empresaController = function($scope, $mdToast, $state,
                 $scope.cidades = response.data;
             })
             .catch(function (error) {
-                toastUtil.showErrorToast(error);
+              let message = error.data.message;
+              toastUtil.showErrosValidation(message);
             });
     }
 
