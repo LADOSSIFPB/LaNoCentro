@@ -20,7 +20,7 @@ var empresaFactory = function($http, serviceCfg) {
   }
 
   var _atualizar = function(empresa) {
-    return $http.put(baseUrl + "/empresa", empresa);
+    return $http.put(baseUrl + "/empresas/" + empresa.id, empresa);
   };
 
   return {

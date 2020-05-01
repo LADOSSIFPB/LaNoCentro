@@ -149,7 +149,8 @@
             <!-- Cep -->
             <md-input-container class="md-icon-float md-block" flex="30">
               <label>Cep</label>
-              <input ng-model="endereco.cep" name="cep" type="text" required>
+              <input ng-model="endereco.cep" name="cep" type="text"
+                ui-br-cep-mask required>
               <div ng-messages="cadastrarEmpresaForm.cep.$error" role="alert">
                 <div ng-messages-include="messages.html"></div>
               </div>

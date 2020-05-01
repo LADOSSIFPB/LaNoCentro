@@ -59,7 +59,7 @@ class EnderecosResource(Resource):
 
 
 class EnderecoResource(Resource):
-    # GET /salas/<id>
+    # GET /enderecos/<id>
     @marshal_with(endereco_campos)
     def get(self, endereco_id):
         current_app.logger.info("Get - Endereço: %s" % endereco_id)
@@ -69,7 +69,7 @@ class EnderecoResource(Resource):
 
         return endereco, 200
 
-    # PUT /salas/<id>
+    # PUT /enderecos/<id>
     def put(self, endereco_id):
         current_app.logger.info("Put - Endereço: %s:" % endereco_id)
         try:
