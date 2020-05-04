@@ -10,9 +10,10 @@ from resources.cidade import *
 from resources.estado import *
 from resources.natureza import *
 from resources.hello_world import *
+from resources.atividade import *
+import sql
 
 app = Flask(__name__)
-
 
 # Settings
 app.config['DEBUG'] = DEBUG
@@ -54,11 +55,19 @@ api.add_resource(EstadoResource, '/estados/<estado_id>')
 api.add_resource(NaturezasResource, '/naturezas')
 api.add_resource(NaturezaResource, '/naturezas/<natureza_id>')
 
+api.add_resource(AtividadesResource, '/atividades')
+api.add_resource(AtividadeResource, '/atividades/<atividade_id>')
+
 # Blueprints para Restful.
 app.register_blueprint(api_bp)
 
 # CORS - requisição multi-clients
 cors = CORS(app, resources={r"/lanocentro/api/*": {"origins": "*"}})
+
+# Importação dos dados do OCS.
+@app.cli.command()
+def create_db():
+    sql.run()
 
 if __name__ == '__main__':
     app.run(threaded=True)

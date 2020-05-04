@@ -13,7 +13,11 @@
 
       <!-- Salvar alterações -->
       <md-card-icon-actions>
-        <md-button ng-disabled="cadastrarEmpresaForm.$invalid" aria-label="Salvar os dados da Empresa." ng-click="cadastrar()">
+        <md-button ng-disabled="editarEmpresaForm.$invalid" aria-label="Excluir o registro da Empresa." ng-click="excluir()">
+          <md-tooltip md-direction="bottom">Excluir Empresa</md-tooltip>
+          <ng-md-icon icon="delete" size="42"></ng-md-icon>
+        </md-button>
+        <md-button ng-disabled="editarEmpresaForm.$invalid" aria-label="Salvar os dados da Empresa." ng-click="cadastrar()">
           <md-tooltip md-direction="bottom">Salvar Empresa</md-tooltip>
           <ng-md-icon icon="save" size="42"></ng-md-icon>
         </md-button>
@@ -21,7 +25,7 @@
     </md-card-header>
 
     <md-card-content layout="column">
-      <form name="cadastrarEmpresaForm" layout="column" novalidate>
+      <form name="editarEmpresaForm" layout="column" novalidate>
 
         <fieldset>
           <legend>Dados Básicos</legend>
@@ -29,7 +33,7 @@
           <md-input-container class="md-icon-float md-block">
             <label>Nome</label>
             <input ng-model="empresa.nome" name="nome" type="text" required>
-            <div ng-messages="cadastrarEmpresaForm.nome.$error" role="alert">
+            <div ng-messages="editarEmpresaForm.nome.$error" role="alert">
               <div ng-messages-include="messages.html"></div>
             </div>
           </md-input-container>
@@ -39,7 +43,7 @@
             <md-input-container class="md-icon-float md-block" flex="50">
               <label>Telefone</label>
               <input ng-model="empresa.telefone" name="telefone" type="text" required>
-              <div ng-messages="cadastrarEmpresaForm.telefone.$error" role="alert">
+              <div ng-messages="editarEmpresaForm.telefone.$error" role="alert">
                 <div ng-messages-include="messages.html"></div>
               </div>
             </md-input-container>
@@ -48,7 +52,7 @@
             <md-input-container class="md-icon-float md-block" flex="50">
               <label>E-mail</label>
               <input ng-model="empresa.email" name="email" type="email" ng-pattern="/^.+@.+\..+$/" required>
-              <div ng-messages="cadastrarEmpresaForm.email.$error" role="alert">
+              <div ng-messages="editarEmpresaForm.email.$error" role="alert">
                 <div ng-messages-include="messages.html"></div>
               </div>
             </md-input-container>
@@ -62,7 +66,7 @@
                 {{natureza.tipo}}
               </md-option>
             </md-select>
-            <div ng-messages="cadastrarEmpresaForm.empresa.$error">
+            <div ng-messages="editarEmpresaForm.empresa.$error">
               <div ng-messages-include="messages.html"></div>
             </div>
           </md-input-container>
@@ -82,7 +86,7 @@
           <md-input-container class="md-icon-float md-block">
             <label>Logradouro</label>
             <input ng-model="endereco.logradouro" name="logradouro" type="text" required>
-            <div ng-messages="cadastrarEmpresaForm.logradouro.$error" role="alert">
+            <div ng-messages="editarEmpresaForm.logradouro.$error" role="alert">
               <div ng-messages-include="messages.html"></div>
             </div>
           </md-input-container>
@@ -96,7 +100,7 @@
                   {{estado.nome}}
                 </md-option>
               </md-select>
-              <div ng-messages="cadastrarEmpresaForm.estado.$error">
+              <div ng-messages="editarEmpresaForm.estado.$error">
                 <div ng-messages-include="messages.html"></div>
               </div>
             </md-input-container>
@@ -109,7 +113,7 @@
                   {{cidade.nome}}
                 </md-option>
               </md-select>
-              <div ng-messages="cadastrarEmpresaForm.cidade.$error">
+              <div ng-messages="editarEmpresaForm.cidade.$error">
                 <div ng-messages-include="messages.html"></div>
               </div>
             </md-input-container>
@@ -120,7 +124,7 @@
             <md-input-container class="md-icon-float md-block" flex="50">
               <label>Número</label>
               <input ng-model="endereco.numero" name="numero" type="text" required>
-              <div ng-messages="cadastrarEmpresaForm.numero.$error" role="alert">
+              <div ng-messages="editarEmpresaForm.numero.$error" role="alert">
                 <div ng-messages-include="messages.html"></div>
               </div>
             </md-input-container>
@@ -129,7 +133,7 @@
             <md-input-container class="md-icon-float md-block" flex="50">
               <label>Complemento</label>
               <input ng-model="endereco.complemento" name="complemento" type="text">
-              <div ng-messages="cadastrarEmpresaForm.complemento.$error" role="alert">
+              <div ng-messages="editarEmpresaForm.complemento.$error" role="alert">
                 <div ng-messages-include="messages.html"></div>
               </div>
             </md-input-container>
@@ -140,7 +144,7 @@
             <md-input-container class="md-icon-float md-block" flex="70">
               <label>Ponto de Referência</label>
               <input ng-model="endereco.ponto_referencia" name="ponto_referencia" type="text">
-              <div ng-messages="cadastrarEmpresaForm.ponto_referencia.$error" role="alert">
+              <div ng-messages="editarEmpresaForm.ponto_referencia.$error" role="alert">
                 <div ng-messages-include="messages.html"></div>
               </div>
             </md-input-container>
@@ -149,7 +153,7 @@
             <md-input-container class="md-icon-float md-block" flex="30">
               <label>Cep</label>
               <input ng-model="endereco.cep" name="cep" type="text" ui-br-cep-mask required>
-              <div ng-messages="cadastrarEmpresaForm.cep.$error" role="alert">
+              <div ng-messages="editarEmpresaForm.cep.$error" role="alert">
                 <div ng-messages-include="messages.html"></div>
               </div>
             </md-input-container>
@@ -163,7 +167,7 @@
             <md-input-container class="md-icon-float md-block" flex="50">
               <label>Instagram</label>
               <input ng-model="empresa.instagram" name="instagram" type="text">
-              <div ng-messages="cadastrarEmpresaForm.instagram.$error" role="alert">
+              <div ng-messages="editarEmpresaForm.instagram.$error" role="alert">
                 <div ng-messages-include="messages.html"></div>
               </div>
             </md-input-container>
@@ -172,7 +176,7 @@
             <md-input-container class="md-icon-float md-block" flex="50">
               <label>Facebook</label>
               <input ng-model="empresa.facebook" name="facebook" type="text">
-              <div ng-messages="cadastrarEmpresaForm.facebook.$error" role="alert">
+              <div ng-messages="editarEmpresaForm.facebook.$error" role="alert">
                 <div ng-messages-include="messages.html"></div>
               </div>
             </md-input-container>

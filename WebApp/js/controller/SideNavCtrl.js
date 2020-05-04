@@ -15,9 +15,10 @@ app.controller("sideNavCtrl", function ($mdMedia, $mdSidenav, $state,
     // Controlar abertura e fechamento do menu.
     this.openOrCloseSideNav = function () {
         console.log("Entrou no sideNav");
-        if ($mdMedia('gt-md'))
-            this.isOpened = !this.isOpened;
-        else
-            $mdSidenav('sideNav').toggle()
+        if ($mdMedia('gt-md')) {
+          this.isOpened = !this.isOpened;
+        } else {
+          $mdSidenav('sideNavId').toggle();
+        }
     }
 });

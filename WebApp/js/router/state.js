@@ -40,6 +40,7 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
         title: 'Administrador',
         templateUrl: 'view/administrador/home.html'
       })
+      // Empresa
       .state('administrador.empresa', {
         url: '/empresa',
         title: 'Cadastrar Empresa',
@@ -67,6 +68,20 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
         title: 'Contatos',
         templateUrl: 'view/administrador/contatos.html',
         controller: 'ContatosController'
+      })
+      // Atividades
+      .state('administrador.atividades', {
+        url: '/atividades',
+        title: 'Atividades',
+        templateUrl: 'view/administrador/atividades.html',
+        controller: 'AtividadesController'
+      })
+      // Atividade
+      .state('administrador.atividade', {
+        url: '/atividade',
+        title: 'Cadastrar Atividade',
+        templateUrl: 'view/administrador/atividade.html',
+        controller: 'AtividadeController'
       });
   })
   //take all whitespace out of string

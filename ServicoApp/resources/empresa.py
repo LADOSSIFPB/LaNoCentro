@@ -4,10 +4,12 @@ from sqlalchemy import exc
 from models.empresa import EmpresaModel, empresa_campos
 from models.endereco import EnderecoModel
 from models.natureza import NaturezaModel
+from models.atividade import AtividadeModel
 
 parser = reqparse.RequestParser()
 parser.add_argument('nome', required=True, help="Especifique um nome válido para a Empresa.")
 parser.add_argument('natureza', type=dict, help="Especifique uma natureza válida para a Empresa.")
+parser.add_argument('atividade', type=dict, help="Especifique uma atividade válida para a Empresa.")
 parser.add_argument('endereco', type=dict, help="Especifique um endereço válido para a Empresa.")
 parser.add_argument('email', required=True, help="Especifique um e-mail válido para a Empresa.")
 parser.add_argument('telefone', required=True, help="Especifique um telefone válido para a Empresa.")
@@ -37,6 +39,7 @@ class EmpresasResource(Resource):
             nome = args['nome']
             natureza_id = args['natureza']['id']          
             endereco_id = args['endereco']['id']
+            atividade_id = args['atividade']['id']
             email = args['email']
             telefone = args['telefone']
             instagram = args['instagram']
@@ -49,8 +52,9 @@ class EmpresasResource(Resource):
             # Recovering existing resources
             endereco = EnderecoModel.query.filter_by(id=endereco_id).first()
             natureza = NaturezaModel.query.filter_by(id=natureza_id).first()
+            atividade = AtividadeModel.query.filter_by(id=atividade_id).first()
 
-            empresa = EmpresaModel(nome, natureza, endereco, email, telefone, instagram, facebook, is_delivery)
+            empresa = EmpresaModel(nome, natureza, atividade, endereco, email, telefone, instagram, facebook, is_delivery)
 
             # Criação da Empresa.
             db.session.add(empresa)
@@ -81,6 +85,7 @@ class EmpresaResource(Resource):
             nome = args['nome']
             natureza_id = args['natureza']['id']          
             endereco_id = args['endereco']['id']
+            atividade_id = args['atividade']['id']
             email = args['email']
             telefone = args['telefone']
             instagram = args['instagram']
@@ -89,12 +94,14 @@ class EmpresaResource(Resource):
             # Recovering existing resources
             endereco = EnderecoModel.query.filter_by(id=endereco_id).first()
             natureza = NaturezaModel.query.filter_by(id=natureza_id).first()
+            atividade = AtividadeModel.query.filter_by(id=atividade_id).first()
 
             EmpresaModel.query \
                 .filter_by(id=empresa_id) \
                 .update(dict(nome=nome, 
                             fk_id_natureza=natureza_id, 
-                            fk_id_endereco=endereco_id, 
+                            fk_id_endereco=endereco_id,
+                            fk_id_atividade=atividade_id,
                             email=email, 
                             telefone=telefone, 
                             instagram=instagram, 

@@ -1,72 +1,80 @@
 <md-content flex layout-padding>
-    <md-card>
-        <md-table-container>
-            <!-- Cabeçalho de opções -->
-            <md-card-header>
-                <md-card-avatar>
-                    <ng-md-icon icon="person" size="42"></ng-md-icon>
-                </md-card-avatar>
+  <md-card>
+    <md-table-container>
+      <!-- Cabeçalho de opções -->
+      <md-card-header>
+        <md-card-avatar>
+          <ng-md-icon icon="person" size="42"></ng-md-icon>
+        </md-card-avatar>
 
-                <md-card-header-text>
-                    <span class="md-title">Contatos</span>
-                    <span class="md-subhead">
-                        Digite o nome do Contato no campo abaixo para buscar.
-                    </span>
-                </md-card-header-text>
+        <md-card-header-text>
+          <span class="md-title">Contatos</span>
+          <span class="md-subhead">
+            Digite o nome do Contato no campo abaixo para buscar.
+          </span>
+        </md-card-header-text>
 
-                <md-card-actions layout="row">
-                    <md-card-icon-actions>
-                    </md-card-icon-actions>
-                </md-card-actions>
+        <md-card-actions layout="row">
+          <md-card-icon-actions>
+          </md-card-icon-actions>
+        </md-card-actions>
 
-            </md-card-header>
+      </md-card-header>
 
-            <md-toolbar class="md-table-toolbar md-default">
-                <div class="md-toolbar-tools">
+      <md-toolbar class="md-table-toolbar md-default">
+        <div class="md-toolbar-tools">
 
-                    <ng-md-icon icon="search" size="32"></ng-md-icon>
+          <ng-md-icon icon="search" size="32"></ng-md-icon>
 
-                    <div class="toolbar-input" flex>
-                        <input type="text" ng-model="nome" ng-keyup="pesquisar(nome)" placeholder="Contato">
-                    </div>
+          <div class="toolbar-input" flex>
+            <input type="text" ng-model="nome" ng-keyup="pesquisar(nome)" placeholder="Contato">
+          </div>
 
-                    <md-button aria-label="Limpar Busca" ng-click="limparBusca()">
-                        <md-tooltip md-direction="bottom">Limpar Busca</md-tooltip>
-                        <ng-md-icon icon="clear" size="32"></ng-md-icon>
-                    </md-button>
-                </div>
-            </md-toolbar>
+          <md-button aria-label="Limpar Busca" ng-click="limparBusca()">
+            <md-tooltip md-direction="bottom">Limpar Busca</md-tooltip>
+            <ng-md-icon icon="clear" size="32"></ng-md-icon>
+          </md-button>
+        </div>
+      </md-toolbar>
 
-            <!-- Tabela -->
-            <table md-table md-row-select ng-model="selectedContato">
-                <thead md-head>
-                    <tr md-row>
-                      <th md-column>Id</th>
-                      <th md-column>Nome</th>
-                      <th md-column>Telefone</th>
-                      <th md-column>E-mail</th>
-                      <th md-column>Descrição</th>
-                      <th md-column>Atendido</th>
-                    </tr>
-                </thead>
+      <!-- Tabela -->
+      <table md-table>
+        <thead md-head>
+          <tr md-row>
+            <th md-column>Id</th>
+            <th md-column>Nome</th>
+            <th md-column>Telefone</th>
+            <th md-column>E-mail</th>
+            <th md-column>Descrição</th>
+            <th md-column>Atendido</th>
+            <th md-column>Opções</th>
+          </tr>
+        </thead>
 
-                <tbody md-body>
-                    <tr md-row md-select="contato" md-on-select="detalharContato" md-select-id="contato.id" md-auto-select ng-repeat="contato in contatos">
-                      <td md-cell>{{contato.id}}</td>
-                      <td md-cell>{{contato.nome | uppercase}}</td>
-                      <td md-cell>
-                        <a href="https://api.whatsapp.com/send?phone=55{{contato.telefone}}"
-                          target="_blank">
-                          {{contato.telefone | brPhoneNumber}}
-                        </a>
-                      </td>
-                      <td md-cell>{{contato.email | uppercase}}</td>
-                      <td md-cell>{{contato.descricao | uppercase}}</td>
-                      <td md-cell>{{contato.isAtendido | yesNo}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </md-table-container>
-        <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{contatos.length}}" md-page-select></md-table-pagination>
-    </md-card>
+        <tbody md-body>
+          <tr md-row ng-repeat="contato in contatos | limitTo: query.limit: (query.page - 1) * query.limit">
+            <td md-cell>{{contato.id}}</td>
+            <td md-cell>{{contato.nome | uppercase}}</td>
+            <td md-cell>
+              <a href="https://api.whatsapp.com/send?phone=55{{contato.telefone}}" target="_blank">
+                {{contato.telefone | brPhoneNumber}}
+              </a>
+            </td>
+            <td md-cell>{{contato.email | uppercase}}</td>
+            <td md-cell>{{contato.descricao | uppercase}}</td>
+            <td md-cell>{{contato.isAtendido | yesNo}}</td>
+            <td md-cell>
+              <md-button aria-label="Editar Contato" ui-sref="administrador.contato-editar({id: contato.id})" ui-sref-opts="{reload: true}">
+                <ng-md-icon icon="edit" size="18"></ng-md-icon>
+                <md-tooltip md-direction="bottom">
+                  Editar
+                </md-tooltip>
+              </md-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+    <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{contatos.length}}" md-page-select></md-table-pagination>
+  </md-card>
 </md-content>

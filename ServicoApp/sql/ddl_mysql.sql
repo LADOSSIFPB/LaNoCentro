@@ -111,6 +111,9 @@ INSERT INTO `lanocentro`.`tb_empresa`
 /*!40000 ALTER TABLE `tb_empresa` ENABLE KEYS */;
 UNLOCK TABLES;
 
+ALTER TABLE tb_empresa ADD fk_id_atividade int(11);
+ALTER TABLE tb_empresa ADD FOREIGN KEY (fk_id_atividade) REFERENCES tb_atividade(id);
+
 --
 -- Table structure for table `tb_empresa_produto`
 --
@@ -217,9 +220,11 @@ CREATE TABLE `tb_natureza` (
 
 LOCK TABLES `tb_natureza` WRITE;
 /*!40000 ALTER TABLE `tb_natureza` DISABLE KEYS */;
-INSERT INTO `tb_natureza` VALUES (1,'Feirante'),(2,'Comerciante autônomo');
+INSERT INTO `tb_natureza` VALUES (1,'Feirante'),(2,'Comerciante autônomo'), 
+  (3, 'Micro empreendedor individual'), (4, 'Lojista');
 /*!40000 ALTER TABLE `tb_natureza` ENABLE KEYS */;
 UNLOCK TABLES;
+
 
 --
 -- Table structure for table `tb_produto`
@@ -246,6 +251,16 @@ LOCK TABLES `tb_produto` WRITE;
 /*!40000 ALTER TABLE `tb_produto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+CREATE TABLE `tb_atividade` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(255) NULL,
+  `dt_insercao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `lanocentro`.`tb_atividade` (`nome`) 
+VALUES ('Beleza e cuidados pessoais');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

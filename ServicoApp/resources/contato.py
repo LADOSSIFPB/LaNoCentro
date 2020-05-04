@@ -47,7 +47,7 @@ class ContatosResource(Resource):
             current_app.logger.error(e)
             return 500
 
-        return 204
+        return marshal(contato, contato_campos), 201
 
 
 class ContatoResource(Resource):

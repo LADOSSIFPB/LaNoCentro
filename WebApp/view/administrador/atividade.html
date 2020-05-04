@@ -1,0 +1,41 @@
+<md-content flex layout-padding>
+  <md-card flex layout-padding>
+
+    <md-card-header>
+      <md-card-avatar>
+        <ng-md-icon icon="local_mall" size="42"></ng-md-icon>
+      </md-card-avatar>
+
+      <md-card-header-text>
+        <span class="md-title">Adicionar Atividade</span>
+        <span class="md-subhead">Clique nesse botão para Salvar as informações da Atividade.</span>
+      </md-card-header-text>
+
+      <!-- Salvar alterações -->
+      <md-card-icon-actions>
+        <md-button ng-disabled="cadastrarAtividadeForm.$invalid" aria-label="Salvar os dados da Atividade."
+          ng-click="cadastrar()">
+          <md-tooltip md-direction="bottom">Salvar Atividade</md-tooltip>
+          <ng-md-icon icon="save" size="42"></ng-md-icon>
+        </md-button>
+      </md-card-icon-actions>
+    </md-card-header>
+
+    <md-card-content layout="column">
+      <form name="cadastrarAtividadeForm" layout="column" novalidate>
+
+        <fieldset>
+          <legend>Dados Básicos</legend>
+          <!-- Nome da atividade -->
+          <md-input-container class="md-icon-float md-block">
+            <label>Nome</label>
+            <input ng-model="atividade.nome" name="nome" type="text" required>
+            <div ng-messages="cadastrarAtividadeForm.nome.$error" role="alert">
+              <div ng-messages-include="messages.html"></div>
+            </div>
+          </md-input-container>
+        </fieldset>
+      </form>
+    </md-card-content>
+  </md-card>
+</md-content>

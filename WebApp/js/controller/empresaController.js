@@ -1,11 +1,13 @@
 var empresaController = function($scope, $mdToast, $state,
-  empresaApi, enderecoApi, cidadeApi, estadoApi, naturezaApi, toastUtil, serviceCfg) {
+  empresaApi, enderecoApi, cidadeApi, estadoApi, naturezaApi, atividadeApi,
+  toastUtil, serviceCfg) {
 
   $scope.empresa = {};
   $scope.endereco = {};
   $scope.cidades = [];
   $scope.estados = [];
   $scope.naturezas = [];
+  $scope.atividades = [];
 
   $scope.cadastrar = function() {
     // Criar uma cópia da empresa e endereco do $scope.
@@ -59,37 +61,46 @@ var empresaController = function($scope, $mdToast, $state,
 
   function carregamentoInicial() {
 
-        // Carregar Estados e Cidades para seleção no cadastro da Empresa.
-        naturezaApi.listar()
-            .then(function(response) {
-                $scope.naturezas = response.data;
-            })
-            .catch(function (error) {
-              let message = error.data.message;
-              toastUtil.showErrosValidation(message);
-            });
+    // Carregar Estados, Cidades, Natureza, Atividade para seleção no cadastro da Empresa.
+    naturezaApi.listar()
+      .then(function(response) {
+        $scope.naturezas = response.data;
+      })
+      .catch(function(error) {
+        let message = error.data.message;
+        toastUtil.showErrosValidation(message);
+      });
 
-        estadoApi.listar()
-            .then(function(response) {
-                $scope.estados = response.data;
-            })
-            .catch(function (error) {
-              let message = error.data.message;
-              toastUtil.showErrosValidation(message);
-            });
+    atividadeApi.listar()
+      .then(function(response) {
+        $scope.atividades = response.data;
+      })
+      .catch(function(error) {
+        let message = error.data.message;
+        toastUtil.showErrosValidation(message);
+      });
 
-        cidadeApi.listar()
-            .then(function(response) {
-                $scope.cidades = response.data;
-            })
-            .catch(function (error) {
-              let message = error.data.message;
-              toastUtil.showErrosValidation(message);
-            });
-    }
+    estadoApi.listar()
+      .then(function(response) {
+        $scope.estados = response.data;
+      })
+      .catch(function(error) {
+        let message = error.data.message;
+        toastUtil.showErrosValidation(message);
+      });
 
-    // Inicializar listagem de campi.
-    carregamentoInicial();
+    cidadeApi.listar()
+      .then(function(response) {
+        $scope.cidades = response.data;
+      })
+      .catch(function(error) {
+        let message = error.data.message;
+        toastUtil.showErrosValidation(message);
+      });
+  }
+
+  // Inicializar listagem de campi.
+  carregamentoInicial();
 }
 
 app.controller('EmpresaController', empresaController);

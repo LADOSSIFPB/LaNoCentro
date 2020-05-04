@@ -1,8 +1,9 @@
 from common.database import db
 from flask_restful import fields
 from sqlalchemy.ext.orderinglist import ordering_list
-from resources.endereco import EnderecoModel, endereco_campos
-from resources.natureza import NaturezaModel, natureza_campos
+from models.endereco import EnderecoModel, endereco_campos
+from models.natureza import NaturezaModel, natureza_campos
+from models.atividade import AtividadeModel, atividade_campos
 from sqlalchemy.sql import func
 
 
@@ -10,6 +11,7 @@ empresa_campos = {
     'id': fields.Integer(attribute='id'),
     'nome': fields.String(attribute='nome'),
     'natureza': fields.Nested(natureza_campos),
+    'atividade': fields.Nested(atividade_campos),
     'endereco': fields.Nested(endereco_campos),
     'email': fields.String(attribute='email'),
     'telefone': fields.String(attribute='telefone'),
@@ -43,10 +45,14 @@ class EmpresaModel(db.Model):
     fk_id_natureza = db.Column(db.Integer, db.ForeignKey('tb_natureza.id'), nullable=False)
     natureza = db.relationship('NaturezaModel', backref='natureza', primaryjoin="EmpresaModel.fk_id_natureza==NaturezaModel.id", uselist=False)
 
-    
-    def __init__(self, nome, natureza, endereco, email, telefone, instagram, facebook, is_delivery):
+    fk_id_atividade = db.Column(db.Integer, db.ForeignKey('tb_atividade.id'), nullable=False)
+    atividade = db.relationship('AtividadeModel', backref='atividade', primaryjoin="EmpresaModel.fk_id_atividade==AtividadeModel.id", uselist=False)
+
+
+    def __init__(self, nome, natureza, atividade, endereco, email, telefone, instagram, facebook, is_delivery):
         self.nome = nome
         self.natureza = natureza
+        self.atividade = atividade
         self.endereco = endereco
         self.email = email
         self.telefone = telefone
