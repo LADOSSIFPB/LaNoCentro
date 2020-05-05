@@ -1,11 +1,13 @@
 var empresaController = function($scope, $mdToast, $state, $stateParams,
-  empresaApi, enderecoApi, cidadeApi, estadoApi, naturezaApi, toastUtil, serviceCfg) {
+  empresaApi, enderecoApi, cidadeApi, estadoApi, naturezaApi, toastUtil, atividadeApi,
+  serviceCfg) {
 
   $scope.empresa = {};
   $scope.endereco = {};
   $scope.cidades = [];
   $scope.estados = [];
   $scope.naturezas = [];
+  $scope.atividades = [];
 
   $scope.atualizar = function() {
     // Criar uma cópia da empresa e endereco do $scope.
@@ -81,6 +83,15 @@ var empresaController = function($scope, $mdToast, $state, $stateParams,
         })
         .catch(function(error) {
           toastUtil.showErrorToast(error);
+        });
+
+      atividadeApi.listar()
+        .then(function(response) {
+          $scope.atividades = response.data;
+        })
+        .catch(function(error) {
+          let message = error.data.message;
+          toastUtil.showErrosValidation(message);
         });
 
       estadoApi.listar()

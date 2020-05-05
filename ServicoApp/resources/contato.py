@@ -24,6 +24,7 @@ class ContatosResource(Resource):
     # POST /contatos
     def post(self):
         current_app.logger.info("Post - Contato")
+        contato = None
         try:
             # Parser JSON
             args = parser.parse_args()
@@ -36,13 +37,13 @@ class ContatosResource(Resource):
             descricao = args['descricao']
             is_atendido = False
 
-            endereco = ContatoModel(nome, email, telefone, descricao, is_atendido)
+            contato = ContatoModel(nome, email, telefone, descricao, is_atendido)
 
             # Criação do Contato.
-            db.session.add(endereco)
+            db.session.add(contato)
             db.session.commit()
 
-        except exc.SQLAlchemyError:
+        except exc.SQLAlchemyError as e:
             current_app.logger.error("Exceção")
             current_app.logger.error(e)
             return 500

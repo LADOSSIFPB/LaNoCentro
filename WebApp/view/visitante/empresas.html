@@ -42,6 +42,7 @@
         <tr md-row>
           <th md-column>Nome</th>
           <th md-column>Natureza</th>
+          <th md-column>Atividade</th>
           <th md-column>Município</th>
           <th md-column>UF</th>
           <th md-column>Telefone</th>
@@ -55,6 +56,7 @@
         <tr md-row md-select="empresa" md-on-select="detalharEmpresa" md-select-id="empresa.id" md-auto-select ng-repeat="empresa in empresas">
           <td md-cell>{{empresa.nome | uppercase}}</td>
           <td md-cell>{{empresa.natureza.tipo | uppercase}}</td>
+          <td md-cell>{{empresa.atividade.nome | uppercase}}</td>
           <td md-cell>{{empresa.endereco.cidade.nome | uppercase}}</td>
           <td md-cell>{{empresa.endereco.estado.nome | uppercase}}</td>
           <td md-cell>{{empresa.telefone | brPhoneNumber}}</td>

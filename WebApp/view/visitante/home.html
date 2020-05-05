@@ -68,7 +68,7 @@
 
           <!-- Salvar alterações -->
           <md-card-icon-actions>
-            <md-button aria-label="Enviar dados de Contato." ng-click="enviarContato()">
+            <md-button ng-disabled="enviarContatoForm.$invalid" aria-label="Enviar dados de Contato." ng-click="enviarContato()">
               <md-tooltip md-direction="bottom">
                 Enviar dos dados de Contato.
               </md-tooltip>
@@ -120,7 +120,8 @@
             <!-- Botões -->
             <div class="d-flex flex-row-reverse">
               <div class="p-2">
-                <button ng-click="enviarContato()" class="btn btn-primary btn-lg btn-block">
+                <button ng-disabled="enviarContatoForm.$invalid"
+                  ng-click="enviarContato()" class="btn btn-primary btn-lg btn-block">
                   Enviar
                 </button>
               </div>
@@ -144,18 +145,6 @@
       <h2 class="mb-5 font-weight-bold">Parceiros</h2>
       <!--Grid row-->
       <div class="row">
-
-        <!--Grid column
-        <div class="col-lg-6 col-md-6 mb-4">
-          <a href="http://www.guarabira.pb.gov.br/">
-            <div class="view overlay z-depth-1-half">
-              <img src="../../images/pmg.png" class="img-fluid" alt="">
-              <div class="mask rgba-white-slight"></div>
-            </div>
-          </a>
-        </div>
-        -->
-
         <!--Grid column-->
         <div class="col-lg-6 col-md-6 mb-4">
           <a href="https://www.cadernodematerias.com/">

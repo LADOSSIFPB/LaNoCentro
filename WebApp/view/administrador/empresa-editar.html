@@ -17,7 +17,7 @@
           <md-tooltip md-direction="bottom">Excluir Empresa</md-tooltip>
           <ng-md-icon icon="delete" size="42"></ng-md-icon>
         </md-button>
-        <md-button ng-disabled="editarEmpresaForm.$invalid" aria-label="Salvar os dados da Empresa." ng-click="cadastrar()">
+        <md-button ng-disabled="editarEmpresaForm.$invalid" aria-label="Salvar os dados da Empresa." ng-click="atualizar()">
           <md-tooltip md-direction="bottom">Salvar Empresa</md-tooltip>
           <ng-md-icon icon="save" size="42"></ng-md-icon>
         </md-button>
@@ -59,23 +59,38 @@
           </div>
 
           <!-- Natureza -->
-          <md-input-container class="md-icon-float md-block">
-            <label>Natureza</label>
-            <md-select ng-model="empresa.natureza.id" name="natureza" aria-label="Selecione a Natureza da Empresa">
-              <md-option ng-repeat="natureza in naturezas" value="{{natureza.id}}">
-                {{natureza.tipo}}
-              </md-option>
-            </md-select>
-            <div ng-messages="editarEmpresaForm.empresa.$error">
-              <div ng-messages-include="messages.html"></div>
-            </div>
-          </md-input-container>
+          <div layout="row" flex>
+            <md-input-container class="md-icon-float md-block" flex="50">
+              <label>Natureza</label>
+              <md-select ng-model="empresa.natureza.id" name="natureza" aria-label="Selecione a Natureza da Empresa">
+                <md-option ng-repeat="natureza in naturezas" value="{{natureza.id}}">
+                  {{natureza.tipo}}
+                </md-option>
+              </md-select>
+              <div ng-messages="editarEmpresaForm.empresa.$error">
+                <div ng-messages-include="messages.html"></div>
+              </div>
+            </md-input-container>
+
+            <!-- Atividade -->
+            <md-input-container class="md-icon-float md-block" flex="50">
+              <label>Atividade</label>
+              <md-select ng-model="empresa.atividade.id" name="atividade" aria-label="Selecione a Atividade Comercial da Empresa">
+                <md-option ng-repeat="atividade in atividades" value="{{atividade.id}}">
+                  {{atividade.nome}}
+                </md-option>
+              </md-select>
+              <div ng-messages="cadastrarEmpresaForm.empresa.$error">
+                <div ng-messages-include="messages.html"></div>
+              </div>
+            </md-input-container>
+          </div>
 
           <!-- Delivery -->
           <md-input-container class="md-block">
-              <md-checkbox ng-model="empresa.isDelivery" aria-label="Faz entrega?">
-                  A empresa realiza entrega de produtos por Delivery: <b>{{empresa.isDelivery| yesNo}}</b>.
-              </md-checkbox>
+            <md-checkbox ng-model="empresa.isDelivery" aria-label="Faz entrega?">
+              A empresa realiza entrega de produtos por Delivery: <b>{{empresa.isDelivery| yesNo}}</b>.
+            </md-checkbox>
           </md-input-container>
         </fieldset>
 
