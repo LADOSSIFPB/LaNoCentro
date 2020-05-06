@@ -1,164 +1,158 @@
-<!--Main layout-->
-<main class="mt-5">
-  <div class="container">
+<div class="container">
 
-    <!--Section: Objetivos-->
-    <section id="best-features" class="text-center">
+  <!--Section: Objetivos-->
+  <section id="best-features" class="text-center">
 
-      <!-- Heading -->
-      <h2 class="mb-5 font-weight-bold">Objetivo</h2>
+    <!-- Heading -->
+    <h2 class="mb-5 font-weight-bold">Objetivo</h2>
 
-      <!--Grid row-->
-      <div class="row d-flex justify-content-center mb-4">
-        <!--Grid column-->
-        <div class="col-md-8">
-          <!-- Description -->
-          <p class="black-text">
-            <b>LáNoCentro</b> é uma iniciativa do Instituto Federal de Educação (IFPB)
-            campus Guarabira, o site (plataforma) é <b>gratuito</b>.
-            Nosso objetivo é agregar informações de pequenos e médios comerciantes
-            permitindo à população encontrar fornecedores de itens básicos de
-            consumo e prestadores de serviços sem a necessidade de sair de casa.
-          </p>
-        </div>
-        <!--Grid column-->
+    <!--Grid row-->
+    <div class="row d-flex justify-content-center mb-4">
+      <!--Grid column-->
+      <div class="col-md-8">
+        <!-- Description -->
+        <p class="black-text">
+          <b>LáNoCentro</b> é uma iniciativa do Instituto Federal de Educação (IFPB)
+          campus Guarabira, o site (plataforma) é <b>gratuito</b>.
+          Nosso objetivo é agregar informações de pequenos e médios comerciantes
+          permitindo à população encontrar fornecedores de itens básicos de
+          consumo e prestadores de serviços sem a necessidade de sair de casa.
+        </p>
       </div>
-      <!--Grid row-->
+      <!--Grid column-->
+    </div>
+    <!--Grid row-->
 
-      <!-- Heading -->
-      <h2 class="mb-5 font-weight-bold text-center">Empresas</h2>
-      <!--Grid row-->
-      <div class="row d-flex justify-content-center mb-4">
-        <!--Grid column-->
-        <div class="col-md-8">
-          <!-- Description -->
-          <p class="black-text">
-            Chamamos de empresas todos os comerciantes, feirantes e
-            vendedores autônomos e prestadores de serviços. Caso deseje, cadastre
-            seus dados para que apareçam no site.
-          </p>
-        </div>
-        <!--Grid column-->
+    <!-- Heading -->
+    <h2 class="mb-5 font-weight-bold text-center">Empresas</h2>
+    <!--Grid row-->
+    <div class="row d-flex justify-content-center mb-4">
+      <!--Grid column-->
+      <div class="col-md-8">
+        <!-- Description -->
+        <p class="black-text">
+          Chamamos de empresas todos os comerciantes, feirantes e
+          vendedores autônomos e prestadores de serviços. Caso deseje, cadastre
+          seus dados para que apareçam no site.
+        </p>
       </div>
-      <!--Grid row-->
-    </section>
-    <!--Section: Objetivos-->
+      <!--Grid column-->
+    </div>
+    <!--Grid row-->
+  </section>
+  <!--Section: Objetivos-->
 
-    <hr class="my-5">
+  <hr class="my-5">
 
-    <!--Section: Empresas-->
-    <section id="empresas" ng-include="'view/visitante/empresas.html'"></section>
-    <!--Section: Empresas-->
+  <!--Section: Empresas-->
+  <section id="empresas" ng-include="'view/visitante/empresas.html'"></section>
+  <!--Section: Empresas-->
 
-    <hr class="my-5">
+  <hr class="my-5">
 
-    <!--Section: Contato-->
-    <section id="contato">
-      <!-- Contato -->
-      <md-card>
-        <md-card-header>
-          <md-card-avatar>
-            <ng-md-icon icon="person" size="42"></ng-md-icon>
-          </md-card-avatar>
+  <!--Section: Contato-->
+  <section id="contato">
+    <!-- Contato -->
+    <md-card>
+      <md-card-header>
+        <md-card-avatar>
+          <ng-md-icon icon="person" size="42"></ng-md-icon>
+        </md-card-avatar>
 
-          <md-card-header-text>
-            <span class="md-title">Contato</span>
-            <span class="md-subhead">Preencha o formulário para entrar em contato com nossa equipe. Clique no botão Enviar para finalizar.</span>
-          </md-card-header-text>
+        <md-card-header-text>
+          <span class="md-title">Contato</span>
+          <span class="md-subhead">Preencha o formulário para entrar em contato com nossa equipe. Clique no botão Enviar para finalizar.</span>
+        </md-card-header-text>
 
-          <!-- Salvar alterações -->
-          <md-card-icon-actions>
-            <md-button ng-disabled="enviarContatoForm.$invalid" aria-label="Enviar dados de Contato." ng-click="enviarContato()">
-              <md-tooltip md-direction="bottom">
-                Enviar dos dados de Contato.
-              </md-tooltip>
-              <ng-md-icon icon="save" size="42"></ng-md-icon>
-            </md-button>
-          </md-card-icon-actions>
+        <!-- Salvar alterações -->
+        <md-card-icon-actions>
+          <md-button ng-disabled="enviarContatoForm.$invalid" aria-label="Enviar dados de Contato." ng-click="enviarContato()">
+            <md-tooltip md-direction="bottom">
+              Enviar dos dados de Contato.
+            </md-tooltip>
+            <ng-md-icon icon="save" size="42"></ng-md-icon>
+          </md-button>
+        </md-card-icon-actions>
 
-        </md-card-header>
-        <md-card-content layout="column">
-          <form name="enviarContatoForm" id="enviarContatoForm" layout="column" novalidate>
-            <!-- Nome -->
-            <md-input-container class="md-icon-float md-block">
-              <label>Nome</label>
-              <input ng-model="contato.nome" name="nome" type="text" required>
-              <div ng-messages="enviarContatoForm.nome.$error" role="alert">
-                <div ng-messages-include="messages.html"></div>
-              </div>
-            </md-input-container>
+      </md-card-header>
+      <md-card-content layout="column">
+        <form name="enviarContatoForm" id="enviarContatoForm" layout="column" novalidate>
+          <!-- Nome -->
+          <md-input-container class="md-icon-float md-block">
+            <label>Nome</label>
+            <input ng-model="contato.nome" name="nome" type="text" required>
+            <div ng-messages="enviarContatoForm.nome.$error" role="alert">
+              <div ng-messages-include="messages.html"></div>
+            </div>
+          </md-input-container>
 
-            <!-- Telefone -->
-            <md-input-container class="md-icon-float md-block">
-              <label>Telefone (Whatsapp)</label>
-              <input ng-model="contato.telefone" name="telefone" type="text"
-                ui-br-phone-number-mask="areaCode" required>
-              <div ng-messages="enviarContatoForm.telefone.$error" role="alert">
-                <div ng-messages-include="messages.html"></div>
-              </div>
-            </md-input-container>
+          <!-- Telefone -->
+          <md-input-container class="md-icon-float md-block">
+            <label>Telefone (Whatsapp)</label>
+            <input ng-model="contato.telefone" name="telefone" type="text" ui-br-phone-number-mask="areaCode" required>
+            <div ng-messages="enviarContatoForm.telefone.$error" role="alert">
+              <div ng-messages-include="messages.html"></div>
+            </div>
+          </md-input-container>
 
-            <!-- Email -->
-            <md-input-container class="md-icon-float md-block">
-              <label>E-mail</label>
-              <input ng-model="contato.email" name="email" type="email" ng-pattern="/^.+@.+\..+$/" required>
-              <div ng-messages="enviarContatoForm.email.$error" role="alert">
-                <div ng-messages-include="messages.html"></div>
-              </div>
-            </md-input-container>
+          <!-- Email -->
+          <md-input-container class="md-icon-float md-block">
+            <label>E-mail</label>
+            <input ng-model="contato.email" name="email" type="email" ng-pattern="/^.+@.+\..+$/" required>
+            <div ng-messages="enviarContatoForm.email.$error" role="alert">
+              <div ng-messages-include="messages.html"></div>
+            </div>
+          </md-input-container>
 
-            <!-- Descrição -->
-            <md-input-container class="md-icon-float md-block">
-              <label>Descrição da atividade comercial</label>
-              <textarea ng-model="contato.descricao" name="descricao" rows="8" cols="80">
+          <!-- Descrição -->
+          <md-input-container class="md-icon-float md-block">
+            <label>Descrição da atividade comercial</label>
+            <textarea ng-model="contato.descricao" name="descricao" rows="8" cols="80">
                   </textarea>
-              <div ng-messages="enviarContatoForm.descricao.$error" role="alert">
-                <div ng-messages-include="messages.html"></div>
-              </div>
-            </md-input-container>
-
-            <!-- Botões -->
-            <div class="d-flex flex-row-reverse">
-              <div class="p-2">
-                <button ng-disabled="enviarContatoForm.$invalid"
-                  ng-click="enviarContato()" class="btn btn-primary btn-lg btn-block">
-                  Enviar
-                </button>
-              </div>
-              <div class="p-2">
-                <button type='reset' name='limpar' class="btn btn-secondary btn-lg btn-block">
-                  Limpar
-                </button>
-              </div>
+            <div ng-messages="enviarContatoForm.descricao.$error" role="alert">
+              <div ng-messages-include="messages.html"></div>
             </div>
-          </form>
-        </md-card-content>
-      </md-card>
-    </section>
-    <!--Section: Contato-->
+          </md-input-container>
 
-    <hr class="my-5">
-
-    <!--Section: Parceiros-->
-    <section id="parceiros">
-      <!-- Heading -->
-      <h2 class="mb-5 font-weight-bold">Parceiros</h2>
-      <!--Grid row-->
-      <div class="row">
-        <!--Grid column-->
-        <div class="col-lg-6 col-md-6 mb-4">
-          <a href="https://www.cadernodematerias.com/">
-            <div class="view overlay z-depth-1-half">
-              <img src="../../images/ikeda.png" class="img-fluid" alt="">
-              <div class="mask rgba-white-slight"></div>
+          <!-- Botões -->
+          <div class="d-flex flex-row-reverse">
+            <div class="p-2">
+              <button ng-disabled="enviarContatoForm.$invalid" ng-click="enviarContato()" class="btn btn-primary btn-lg btn-block">
+                Enviar
+              </button>
             </div>
-          </a>
-        </div>
-        <!--Grid column-->
+            <div class="p-2">
+              <button type='reset' name='limpar' class="btn btn-secondary btn-lg btn-block">
+                Limpar
+              </button>
+            </div>
+          </div>
+        </form>
+      </md-card-content>
+    </md-card>
+  </section>
+  <!--Section: Contato-->
 
+  <hr class="my-5">
+
+  <!--Section: Parceiros-->
+  <section id="parceiros">
+    <!-- Heading -->
+    <h2 class="mb-5 font-weight-bold">Parceiros</h2>
+    <!--Grid row-->
+    <div class="row">
+      <!--Grid column-->
+      <div class="col-lg-6 col-md-6 mb-4">
+        <a href="https://www.cadernodematerias.com/">
+          <div class="view overlay z-depth-1-half">
+            <img src="../../images/ikeda.png" class="img-fluid" alt="">
+            <div class="mask rgba-white-slight"></div>
+          </div>
+        </a>
       </div>
-      <!--Grid row-->
-    </section>
-  </div>
-</main>
-<!--Main layout-->
+      <!--Grid column-->
+
+    </div>
+    <!--Grid row-->
+  </section>
+</div>

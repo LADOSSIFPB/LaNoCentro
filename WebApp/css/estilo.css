@@ -20,7 +20,6 @@ body {
   height: 100%;
   margin: 0 auto;
   /* Flex para o parent */
-  display: flex;
   flex-direction: column;
   overflow-y: scroll;
   overflow: scroll;
