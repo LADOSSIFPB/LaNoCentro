@@ -19,11 +19,16 @@ var contatoFactory = function($http, serviceCfg) {
     return $http.get(baseUrl + "/contatos/nome/" + encodeURI(nome));
   }
 
+  var _atender = function(id) {
+    return $http.put(baseUrl + "/contatos/" + encodeURI(id) + "/atender");
+  }
+
   return {
     cadastrar: _cadastrar,
     listar: _listar,
     pesquisarPorId: _pesquisarPorId,
-    buscarPorNome: _buscarPorNome
+    buscarPorNome: _buscarPorNome,
+    atender: _atender
   };
 }
 

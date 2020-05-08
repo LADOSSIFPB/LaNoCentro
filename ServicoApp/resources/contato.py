@@ -52,7 +52,7 @@ class ContatosResource(Resource):
 
 
 class ContatoResource(Resource):
-    # GET /salas/<id>
+    # GET /contatos/<id>
     @marshal_with(contato_campos)
     def get(self, contato_id):
         current_app.logger.info("Get - Contato: %s" % contato_id)
@@ -62,7 +62,7 @@ class ContatoResource(Resource):
 
         return contato, 200
 
-    # PUT /salas/<id>
+    # PUT /contatos/<id>
     def put(self, contato_id):
         current_app.logger.info("Put - Contato: %s:" % contato_id)
         try:
@@ -80,6 +80,22 @@ class ContatoResource(Resource):
                 .update(dict(nome = nome,
                             email = email,
                             telefone = telefone))
+            db.session.commit()
+
+        except exc.SQLAlchemyError:
+            current_app.logger.error("Exceção")
+            return 404
+
+        return 204
+
+class ContatoAtenderResource(Resource):
+    # PUT /contatos/<id>/atender
+    def put(self, contato_id):
+        current_app.logger.info("Put - Contato-Atender: %s:" % contato_id)
+        try:
+            ContatoModel.query\
+                .filter_by(id=contato_id)\
+                .update(dict(is_atendido = True))
             db.session.commit()
 
         except exc.SQLAlchemyError:

@@ -64,10 +64,10 @@
             <td md-cell>{{contato.descricao | uppercase}}</td>
             <td md-cell>{{contato.isAtendido | yesNo}}</td>
             <td md-cell>
-              <md-button aria-label="Editar Contato" ui-sref="administrador.contato-editar({id: contato.id})" ui-sref-opts="{reload: true}">
-                <ng-md-icon icon="edit" size="18"></ng-md-icon>
+              <md-button aria-label="Atender Contato" ng-click="atender(contato.id)">
+                <ng-md-icon icon="playlist_add_check" size="18"></ng-md-icon>
                 <md-tooltip md-direction="bottom">
-                  Editar
+                  Atender
                 </md-tooltip>
               </md-button>
             </td>

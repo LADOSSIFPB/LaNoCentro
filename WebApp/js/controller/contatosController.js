@@ -1,4 +1,4 @@
-var contatosController = function($scope, $mdToast, contatoApi) {
+var contatosController = function($scope, $mdToast, $mdDialog, contatoApi) {
 
   $scope.contatos = [];
   $scope.selectedContato = [];
@@ -30,15 +30,33 @@ var contatosController = function($scope, $mdToast, contatoApi) {
     }
   };
 
-  $scope.detalharEmpresa = function (contato) {
-      console.log("Detalhar Contato");
-      console.log(contato);
+  // Adicionar Dia de Refeição.
+  $scope.atender = function(id) {
+
+    let dialog = {
+      controller: 'AtenderContatoController',
+      templateUrl: 'view/administrador/modals/atender-contato.html',
+      parent: angular.element(document.body),
+      clickOutsideToClose: true,
+      fullscreen: false,
+      locals: {
+        idContato: id
+      }
+    };
+
+    $mdDialog.show(dialog)
+      .then(function(response) {})
+      .catch(function(error) {})
+      .finally(function() {
+        limparBusca();
+        $scope.listar();
+      });
   }
 
-  let limparBusca = function () {
-        $scope.nome = "";
-        $scope.contatos = [];
-    };
+  let limparBusca = function() {
+    $scope.nome = "";
+    $scope.contatos = [];
+  };
 
   $scope.listar();
 

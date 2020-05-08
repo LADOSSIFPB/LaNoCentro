@@ -41,6 +41,7 @@ api.add_resource(EnderecoResource, '/enderecos/<endereco_id>')
 
 api.add_resource(ContatosResource, '/contatos')
 api.add_resource(ContatoResource, '/contatos/<contato_id>')
+api.add_resource(ContatoAtenderResource, '/contatos/<contato_id>/atender')
 
 api.add_resource(EmpresasResource, '/empresas')
 api.add_resource(EmpresaResource, '/empresas/<empresa_id>')
