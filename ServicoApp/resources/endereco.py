@@ -81,8 +81,8 @@ class EnderecoResource(Resource):
             logradouro = args['logradouro']
             numero = args['numero']
             complemento = args['complemento']
-            cidade = args['cidade'] #TODO: atualizar
-            estado = args['estado'] #TODO: atualizar
+            cidade_id = args['cidade']['id']
+            estado_id = args['estado']['id']
             cep = args['cep']
             ponto_referencia = args['ponto_referencia']
 
@@ -91,14 +91,15 @@ class EnderecoResource(Resource):
                 .update(dict(logradouro = logradouro,
                             numero = numero,
                             complemento = complemento,
-                            cidade = cidade,
-                            estado = estado,
-                            cep = estado,
+                            fk_id_cidade = cidade_id,
+                            fk_id_estado = estado_id,
+                            cep = cep,
                             ponto_referencia = ponto_referencia))
             db.session.commit()
 
-        except exc.SQLAlchemyError:
+        except exc.SQLAlchemyError as e:
             current_app.logger.error("Exceção")
+            current_app.logger.error(e)
             return 404
 
         return 204

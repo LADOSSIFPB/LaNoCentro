@@ -106,12 +106,13 @@ class EmpresaResource(Resource):
                             telefone=telefone, 
                             instagram=instagram, 
                             facebook=facebook))
-
                 
             db.session.commit()
 
-        except exc.SQLAlchemyError:
+        except exc.SQLAlchemyError as e:
             current_app.logger.error("Exceção")
+            current_app.logger.error(e)
+            return 404
 
         return 204
 

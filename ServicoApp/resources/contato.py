@@ -17,6 +17,7 @@ class ContatosResource(Resource):
     def get(self):
         current_app.logger.info("Get - Contato")
         contatos = ContatoModel.query\
+            .order_by(ContatoModel.is_atendido)\
             .order_by(desc(ContatoModel.dt_insercao))\
             .all()
         return contatos, 200

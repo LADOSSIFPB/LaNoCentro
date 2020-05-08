@@ -15,21 +15,8 @@ var empresaController = function($scope, $mdToast, $state, $stateParams,
 
     enderecoApi.atualizar(endereco)
       .then(function(response) {
-
-        let empresa = angular.copy($scope.empresa);
-
-        // Id do endereco
-        enderecoResponse = response.data;
-        let endereco = {};
-        endereco.id = enderecoResponse.id;
-        empresa.endereco = endereco;
-
-        if (!(empresa.isDelivery)) {
-          empresa.isDelivery = false;
-        }
-
-        // Cadastrar empresa com o endereço
-        atualizarEmpresa(empresa);
+        // Atualizar empresa
+        atualizarEmpresa();
       })
       .catch(function(error) {
         // Exibir erros de validação do serviço.
@@ -38,7 +25,14 @@ var empresaController = function($scope, $mdToast, $state, $stateParams,
       });
   };
 
-  let atualizarEmpresa = function(empresa) {
+  let atualizarEmpresa = function() {
+
+    let empresa = angular.copy($scope.empresa);
+
+    if (!(empresa.isDelivery)) {
+      empresa.isDelivery = false;
+    }
+
     empresaApi.atualizar(empresa)
       .then(function(response) {
 

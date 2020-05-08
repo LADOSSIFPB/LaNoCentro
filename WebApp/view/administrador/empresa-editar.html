@@ -42,7 +42,8 @@
             <!-- Telefone -->
             <md-input-container class="md-icon-float md-block" flex="50">
               <label>Telefone</label>
-              <input ng-model="empresa.telefone" name="telefone" type="text" required>
+              <input ng-model="empresa.telefone" name="telefone" type="text"
+                ui-br-phone-number-mask="areaCode" required>
               <div ng-messages="editarEmpresaForm.telefone.$error" role="alert">
                 <div ng-messages-include="messages.html"></div>
               </div>
