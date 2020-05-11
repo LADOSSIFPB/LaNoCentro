@@ -50,6 +50,7 @@
                       <th md-column>Id</th>
                       <th md-column>Nome</th>
                       <th md-column>Natureza</th>
+                      <th md-column>Atividade</th>
                       <th md-column>Município</th>
                       <th md-column>UF</th>
                       <th md-column>E-mail</th>
@@ -62,6 +63,7 @@
                       <td md-cell>{{empresa.id}}</td>
                       <td md-cell>{{empresa.nome | uppercase}}</td>
                       <td md-cell>{{empresa.natureza.tipo | uppercase}}</td>
+                      <td md-cell>{{empresa.atividade.nome | uppercase}}</td>
                       <td md-cell>{{empresa.endereco.cidade.nome | uppercase}}</td>
                       <td md-cell>{{empresa.endereco.estado.nome | uppercase}}</td>
                       <td md-cell>{{empresa.email | uppercase}}</td>
