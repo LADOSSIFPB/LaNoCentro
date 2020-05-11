@@ -15,6 +15,30 @@ class NaturezasResource(Resource):
             .all()
         return naturezas, 200
 
+    # POST /naturezas
+    def post(self):
+        current_app.logger.info("Post - Natureza")
+        try:
+            # Parser JSON
+            args = parser.parse_args()
+            current_app.logger.info("Natureza: %s:" % (args))
+
+            # args
+            tipo = args['tipo']
+
+            natureza = NaturezaModel(tipo)
+
+            # Criação da Natureza.
+            db.session.add(natureza)
+            db.session.commit()
+
+        except exc.SQLAlchemyError as e:
+            current_app.logger.error("Exceção")
+            current_app.logger.error(e)
+            return 500
+
+        return marshal(natureza, natureza_campos), 201
+
 class NaturezaResource(Resource):
     # GET /naturezas/<id>
     @marshal_with(natureza_campos)

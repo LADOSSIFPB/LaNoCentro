@@ -28,11 +28,11 @@ class AtividadesResource(Resource):
 
             atividade = AtividadeModel(nome)
 
-            # Criação do Contato.
+            # Criação da Atividade.
             db.session.add(atividade)
             db.session.commit()
 
-        except exc.SQLAlchemyError:
+        except exc.SQLAlchemyError as e:
             current_app.logger.error("Exceção")
             current_app.logger.error(e)
             return 500

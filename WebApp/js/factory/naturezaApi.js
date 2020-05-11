@@ -7,12 +7,17 @@ var naturezaFactory = function($http, serviceCfg) {
     return $http.get(baseUrl + "/naturezas");
   };
 
+  var _cadastrar = function(natureza) {
+    return $http.post(baseUrl + "/naturezas", natureza);
+  };
+
   var _pesquisarPorId = function(id) {
     return $http.get(baseUrl + "/naturezas/" + encodeURI(id));
   };
 
   return {
     listar: _listar,
+    cadastrar: _cadastrar,
     pesquisarPorId: _pesquisarPorId
   };
 }

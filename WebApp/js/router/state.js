@@ -82,6 +82,20 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
         title: 'Cadastrar Atividade',
         templateUrl: 'view/administrador/atividade.html',
         controller: 'AtividadeController'
+      })
+      // Naturezas
+      .state('administrador.naturezas', {
+        url: '/naturezas',
+        title: 'Naturezas',
+        templateUrl: 'view/administrador/naturezas.html',
+        controller: 'NaturezasController'
+      })
+      // Natureza
+      .state('administrador.natureza', {
+        url: '/natureza',
+        title: 'Cadastrar Natureza',
+        templateUrl: 'view/administrador/natureza.html',
+        controller: 'NaturezaController'
       });
   })
   //take all whitespace out of string

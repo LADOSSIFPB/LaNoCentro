@@ -21,7 +21,7 @@ var atividadeController = function($scope, $state, atividadeApi, toastUtil) {
       .catch(function(error) {
         // Exibir erros de validação do serviço.
         let message = error.data.message;
-        toastUtil.showErrosValidation(message);
+        toastUtil.showErrorToast(message);
       });
   }
 }

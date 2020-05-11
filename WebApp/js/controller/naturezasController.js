@@ -1,15 +1,15 @@
-var atividadesController = function($scope, $mdToast, atividadeApi, toastUtil) {
+var naturezasController = function($scope, $mdToast, naturezaApi, toastUtil) {
 
-  $scope.atividades = [];
+  $scope.naturezas = [];
 
   $scope.listar = function() {
-    atividadeApi.listar()
+    naturezaApi.listar()
       .then(function(response) {
-        $scope.atividades = response.data;
+        $scope.naturezas = response.data;
       })
       .catch(function(error) {
         var toast = $mdToast.simple()
-          .textContent("Problema para exibir a lista de atividades.")
+          .textContent("Problema para exibir a lista de naturezas.")
           .position('top right')
           .action('OK')
           .hideDelay(6000);
@@ -19,13 +19,13 @@ var atividadesController = function($scope, $mdToast, atividadeApi, toastUtil) {
 
   $scope.pesquisar = function(nome) {
     if (nome.length >= 3) {
-      atividadeApi.buscarPorNome(nome)
+      naturezaApi.buscarPorNome(nome)
         .then(function(response) {
-          $scope.atividades = response.data;
+          $scope.naturezas = response.data;
         })
         .catch(function(error) {
           var toast = $mdToast.simple()
-            .textContent("Problema para exibir a lista de atividades.")
+            .textContent("Problema para exibir a lista de naturezas.")
             .position('top right')
             .action('OK')
             .hideDelay(6000);
@@ -35,8 +35,8 @@ var atividadesController = function($scope, $mdToast, atividadeApi, toastUtil) {
   };
 
   let limparBusca = function () {
-        $scope.nome = "";
-        $scope.atividades = [];
+        $scope.tipo = "";
+        $scope.naturezas = [];
     };
 
   $scope.listar();
@@ -49,4 +49,4 @@ var atividadesController = function($scope, $mdToast, atividadeApi, toastUtil) {
   };
 }
 
-app.controller('AtividadesController', atividadesController);
+app.controller('NaturezasController', naturezasController);

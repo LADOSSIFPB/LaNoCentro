@@ -4,22 +4,22 @@
             <!-- Cabeçalho de opções -->
             <md-card-header>
                 <md-card-avatar>
-                    <ng-md-icon icon="local_mall" size="42"></ng-md-icon>
+                    <ng-md-icon icon="card_travel" size="42"></ng-md-icon>
                 </md-card-avatar>
 
                 <md-card-header-text>
-                    <span class="md-title">Atividades</span>
+                    <span class="md-title">Naturezas</span>
                     <span class="md-subhead">
-                        Digite o nome da Atividade no campo abaixo para buscar.
+                        Digite o tipo da Natureza no campo abaixo para buscar.
                     </span>
                 </md-card-header-text>
 
                 <md-card-actions layout="row">
                     <md-card-icon-actions>
-                      <md-button aria-label="Adicionar Atividade" ui-sref="administrador.atividade">
+                      <md-button aria-label="Adicionar Natureza" ui-sref="administrador.natureza">
                           <ng-md-icon icon="add" size="42"></ng-md-icon>
                           <md-tooltip md-direction="bottom">
-                              Adicionar Atividade
+                              Adicionar Natureza
                           </md-tooltip>
                       </md-button>
                     </md-card-icon-actions>
@@ -33,7 +33,7 @@
                     <ng-md-icon icon="search" size="32"></ng-md-icon>
 
                     <div class="toolbar-input" flex>
-                        <input type="text" ng-model="nome" ng-keyup="pesquisar(nome)" placeholder="Atividade">
+                        <input type="text" ng-model="tipo" ng-keyup="pesquisar(tipo)" placeholder="Natureza">
                     </div>
 
                     <md-button aria-label="Limpar Busca" ng-click="limparBusca()">
@@ -48,17 +48,17 @@
                 <thead md-head>
                     <tr md-row>
                       <th md-column>Id</th>
-                      <th md-column>Nome</th>
+                      <th md-column>Tipo</th>
                       <th md-column>Opções</th>
                     </tr>
                 </thead>
 
                 <tbody md-body>
-                    <tr md-row ng-repeat="atividade in atividades | limitTo: query.limit: (query.page - 1) * query.limit">
-                      <td md-cell>{{atividade.id}}</td>
-                      <td md-cell>{{atividade.nome | uppercase}}</td>
+                    <tr md-row ng-repeat="natureza in naturezas | limitTo: query.limit: (query.page - 1) * query.limit">
+                      <td md-cell>{{natureza.id}}</td>
+                      <td md-cell>{{natureza.tipo | uppercase}}</td>
                         <td md-cell>
-                            <md-button aria-label="Editar Atividade" ui-sref="administrador.atividade-editar({id: atividade.id})"
+                            <md-button aria-label="Editar Natureza" ui-sref="administrador.natureza-editar({id: natureza.id})"
                               ui-sref-opts="{reload: true}">
                                 <ng-md-icon icon="edit" size="18"></ng-md-icon>
                                 <md-tooltip md-direction="bottom">
@@ -70,6 +70,6 @@
                 </tbody>
             </table>
         </md-table-container>
-        <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{atividades.length}}" md-page-select></md-table-pagination>
+        <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{naturezas.length}}" md-page-select></md-table-pagination>
     </md-card>
 </md-content>

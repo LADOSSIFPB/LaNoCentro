@@ -21,6 +21,11 @@ app.factory("menu", function($location, $rootScope) {
           type: 'link'
         },
         {
+          name: 'Naturezas',
+          state: 'administrador.naturezas',
+          type: 'link'
+        },
+        {
           name: 'Atividades',
           state: 'administrador.atividades',
           type: 'link'
