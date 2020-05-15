@@ -145,8 +145,8 @@ class EmpresaNomeResource(Resource):
 
         current_app.logger.info("Nome %s | Cidade: %s"%(nome, cidade_id))
         predios = EmpresaModel.query.filter(EmpresaModel.nome.ilike('%' + nome + '%'))\
-            .filter(EnderecoModel.fk_id_cidade==cidade_id)
-            .filter_by(is_deleted=False)
+            .filter(EnderecoModel.fk_id_cidade==cidade_id)\
+            .filter_by(is_deleted=False)\
             .all()
 
         return predios, 200
