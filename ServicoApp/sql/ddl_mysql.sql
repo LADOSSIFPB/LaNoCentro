@@ -114,6 +114,8 @@ UNLOCK TABLES;
 ALTER TABLE tb_empresa ADD fk_id_atividade int(11);
 ALTER TABLE tb_empresa ADD FOREIGN KEY (fk_id_atividade) REFERENCES tb_atividade(id);
 
+ALTER TABLE tb_empresa ADD is_prefeitura BOOLEAN DEFAULT 0;
+
 --
 -- Table structure for table `tb_empresa_produto`
 --

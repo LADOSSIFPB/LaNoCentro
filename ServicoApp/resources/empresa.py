@@ -24,6 +24,7 @@ class EmpresasResource(Resource):
     def get(self):
         current_app.logger.info("Get - Empresas")
         empresas = EmpresaModel.query\
+            .filter_by(is_deleted=False)\
             .all()
         return empresas, 200
 
@@ -132,9 +133,20 @@ class EmpresaResource(Resource):
 
 
 class EmpresaNomeResource(Resource):
-    # GET /empresas/nome/<nome>
+    # GET /empresas/nome/<nome>?id_cidade=<cidade_id>
     @marshal_with(empresa_campos)
     def get(self, nome):
         current_app.logger.info("Get - Empresas por nome")
-        predios = EmpresaModel.query.filter(EmpresaModel.nome.ilike('%' + nome + '%')).all()
+        
+        parser_param = reqparse.RequestParser()
+        parser_param.add_argument('id_cidade', type=int, required=False, help='Especifique um código de Cidade válido.')
+        args = parser_param.parse_args()
+        cidade_id = args.get('id_cidade')
+
+        current_app.logger.info("Nome %s | Cidade: %s"%(nome, cidade_id))
+        predios = EmpresaModel.query.filter(EmpresaModel.nome.ilike('%' + nome + '%'))\
+            .filter(EnderecoModel.fk_id_cidade==cidade_id)
+            .filter_by(is_deleted=False)
+            .all()
+
         return predios, 200

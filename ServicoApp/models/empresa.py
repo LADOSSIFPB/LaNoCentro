@@ -18,6 +18,7 @@ empresa_campos = {
     'instagram': fields.String(attribute='instagram'),
     'facebook': fields.String(attribute='facebook'),
     'isDelivery': fields.Boolean(attribute='is_delivery'),
+    'isPrefeitura': fields.Boolean(attribute='is_prefeitura'),
     'isDeleted': fields.Boolean(attribute='is_deleted')
 }
 
@@ -36,6 +37,7 @@ class EmpresaModel(db.Model):
     facebook = db.Column(db.String(255), nullable=True)
     is_delivery = db.Column(db.Boolean, default=False)
     is_deleted = db.Column(db.Boolean, default=False)
+    is_prefeitura = db.Column(db.Boolean, default=False)
     dt_insercao = db.Column(db.DateTime, default=func.current_timestamp())
 
     fk_id_endereco = db.Column(db.Integer, db.ForeignKey('tb_endereco.id'),
@@ -49,7 +51,7 @@ class EmpresaModel(db.Model):
     atividade = db.relationship('AtividadeModel', backref='atividade', primaryjoin="EmpresaModel.fk_id_atividade==AtividadeModel.id", uselist=False)
 
 
-    def __init__(self, nome, natureza, atividade, endereco, email, telefone, instagram, facebook, is_delivery):
+    def __init__(self, nome, natureza, atividade, endereco, email, telefone, instagram, facebook, is_delivery, is_prefeitura):
         self.nome = nome
         self.natureza = natureza
         self.atividade = atividade
@@ -59,6 +61,7 @@ class EmpresaModel(db.Model):
         self.instagram = instagram
         self.facebook = facebook
         self.is_delivery = is_delivery
+        self.is_prefeitura = is_prefeitura
 
     def __str__(self):
         return '<Empresa %r>'%(self.nome) 
