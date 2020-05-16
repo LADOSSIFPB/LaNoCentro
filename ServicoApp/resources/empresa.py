@@ -144,9 +144,13 @@ class EmpresaNomeResource(Resource):
         cidade_id = args.get('id_cidade')
 
         current_app.logger.info("Nome %s | Cidade: %s"%(nome, cidade_id))
-        predios = EmpresaModel.query.filter(EmpresaModel.nome.ilike('%' + nome + '%'))\
-            .filter(EnderecoModel.fk_id_cidade==cidade_id)\
-            .filter_by(is_deleted=False)\
-            .all()
+
+        query = db.session.query(EmpresaModel).filter(EmpresaModel.nome.ilike('%' + nome + '%'))\
+            .filter_by(is_deleted=False)
+
+        if(cidade_id):
+            query = query.filter(EnderecoModel.fk_id_cidade==cidade_id)
+
+        predios = query.all()
 
         return predios, 200
