@@ -23,6 +23,18 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
         templateUrl: 'view/visitante/home.html',
         controller: 'HomeController'
       })
+      // Sobre
+      .state('visitante.sobre', {
+        url: '/sobre',
+        title: 'Sobre',
+        templateUrl: 'view/visitante/sobre.html'
+      })
+      // Home
+      .state('visitante.equipe', {
+        url: '/equipe',
+        title: 'Equipe',
+        templateUrl: 'view/visitante/equipe.html'
+      })
       // Subrota - Administrador
       .state('administrador', {
         abstract: true,
