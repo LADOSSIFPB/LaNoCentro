@@ -116,6 +116,20 @@ ALTER TABLE tb_empresa ADD FOREIGN KEY (fk_id_atividade) REFERENCES tb_atividade
 
 ALTER TABLE tb_empresa ADD is_prefeitura BOOLEAN DEFAULT 0;
 
+ALTER TABLE tb_empresa ADD latitude DECIMAL(10, 8);
+ALTER TABLE tb_empresa ADD longitude DECIMAL(11, 8);
+ 
+CREATE TABLE `tb_historico_movimento` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fk_id_empresa` int(11) NOT NULL,
+  `atual` int(11) NOT NULL,
+  `esperado` int(11) NOT NULL,
+  `dt_insercao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `fk_id_empresa` (`fk_id_empresa`),
+  CONSTRAINT `tb_movimento_empresa_ibfk_1` FOREIGN KEY (`fk_id_empresa`) REFERENCES `tb_empresa` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
 --
 -- Table structure for table `tb_empresa_produto`
 --
