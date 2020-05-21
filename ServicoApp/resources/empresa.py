@@ -15,7 +15,12 @@ parser.add_argument('email', required=True, help="Especifique um e-mail válido 
 parser.add_argument('telefone', required=True, help="Especifique um telefone válido para a Empresa.")
 parser.add_argument('instagram', required=False, help="Especifique um instagram válido para a Empresa.")
 parser.add_argument('facebook', required=False, help="Especifique um facebook válido para a Empresa.")
-parser.add_argument('isDelivery', type=bool, required=True, help="Especifique um Delivery válido para a Empresa.")
+parser.add_argument('latitude', required=False, help="Especifique uma latitude válida para a Empresa.")
+parser.add_argument('longitude', required=False, help="Especifique uma longitude válida para a Empresa.")
+parser.add_argument('isTempoRealMaps', type=bool, required=False, help="Especifique um tempo real válido para a Empresa.")
+parser.add_argument('isDelivery', type=bool, required=True, help="Especifique um delivery válido para a Empresa.")
+parser.add_argument('isPrefeitura', type=bool, required=False, help="Especifique um é proveniente de prefeitura válido para a Empresa.")
+parser.add_argument('isVisivel', type=bool, required=False, help="Especifique um é visível válido para a Empresa.")
 
 
 class EmpresasResource(Resource):
@@ -45,7 +50,12 @@ class EmpresasResource(Resource):
             telefone = args['telefone']
             instagram = args['instagram']
             facebook = args['facebook']
+            latitude = args['latitude']
+            longitude = args['longitude']
+            is_tempo_real_maps = args['isTempoRealMaps']
             is_delivery = args['isDelivery']
+            is_prefeitura = args['isPrefeitura']
+            is_visivel = args['isVisivel']
             
             if (is_delivery is None):
                 is_delivery = False        
@@ -55,7 +65,8 @@ class EmpresasResource(Resource):
             natureza = NaturezaModel.query.filter_by(id=natureza_id).first()
             atividade = AtividadeModel.query.filter_by(id=atividade_id).first()
 
-            empresa = EmpresaModel(nome, natureza, atividade, endereco, email, telefone, instagram, facebook, is_delivery)
+            empresa = EmpresaModel(nome, natureza, atividade, endereco, email, telefone, instagram, facebook,\
+                latitude, longitude, is_tempo_real_maps, is_delivery, is_prefeitura, is_visivel)
 
             # Criação da Empresa.
             db.session.add(empresa)

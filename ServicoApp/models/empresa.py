@@ -17,9 +17,13 @@ empresa_campos = {
     'telefone': fields.String(attribute='telefone'),
     'instagram': fields.String(attribute='instagram'),
     'facebook': fields.String(attribute='facebook'),
+    'latitude': fields.String(attribute='latitude'),
+    'longitude': fields.String(attribute='longitude'),
+    'isTempoRealMaps': fields.Boolean(attribute='is_tempo_real_maps'),    
     'isDelivery': fields.Boolean(attribute='is_delivery'),
     'isPrefeitura': fields.Boolean(attribute='is_prefeitura'),
-    'isDeleted': fields.Boolean(attribute='is_deleted')
+    'isDeleted': fields.Boolean(attribute='is_deleted'),
+    'isVisivel': fields.Boolean(attribute='is_visivel')    
 }
 
 
@@ -35,9 +39,13 @@ class EmpresaModel(db.Model):
     telefone = db.Column(db.String(13), nullable=False)
     instagram = db.Column(db.String(255), nullable=True)
     facebook = db.Column(db.String(255), nullable=True)
+    latitude = db.Column(db.Numeric(10,8), nullable=True)
+    longitude = db.Column(db.Numeric(11,8), nullable=True)
+    is_tempo_real_maps = db.Column(db.Boolean, default=False)
     is_delivery = db.Column(db.Boolean, default=False)
-    is_deleted = db.Column(db.Boolean, default=False)
     is_prefeitura = db.Column(db.Boolean, default=False)
+    is_visivel = db.Column(db.Boolean, default=False)
+    is_deleted = db.Column(db.Boolean, default=False)
     dt_insercao = db.Column(db.DateTime, default=func.current_timestamp())
 
     fk_id_endereco = db.Column(db.Integer, db.ForeignKey('tb_endereco.id'),
@@ -51,7 +59,8 @@ class EmpresaModel(db.Model):
     atividade = db.relationship('AtividadeModel', backref='atividade', primaryjoin="EmpresaModel.fk_id_atividade==AtividadeModel.id", uselist=False)
 
 
-    def __init__(self, nome, natureza, atividade, endereco, email, telefone, instagram, facebook, is_delivery, is_prefeitura):
+    def __init__(self, nome, natureza, atividade, endereco, email, telefone, instagram, facebook,\
+        latitude, longitude, is_tempo_real_maps, is_delivery, is_prefeitura, is_visivel):
         self.nome = nome
         self.natureza = natureza
         self.atividade = atividade
@@ -60,8 +69,12 @@ class EmpresaModel(db.Model):
         self.telefone = telefone
         self.instagram = instagram
         self.facebook = facebook
+        self.latitude = latitude
+        self.longitude = longitude
+        self.is_tempo_real_maps = is_tempo_real_maps
         self.is_delivery = is_delivery
         self.is_prefeitura = is_prefeitura
+        self.is_visivel = is_visivel
 
     def __str__(self):
         return '<Empresa %r>'%(self.nome) 

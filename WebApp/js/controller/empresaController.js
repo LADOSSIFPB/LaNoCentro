@@ -28,6 +28,18 @@ var empresaController = function($scope, $mdToast, $state,
           empresa.isDelivery = false;
         }
 
+        if (!(empresa.isTempoRealMaps)) {
+          empresa.isTempoRealMaps = false;
+        }
+
+        if (!(empresa.isPrefeitura)) {
+          empresa.isPrefeitura = false;
+        }
+
+        if (!(empresa.isVisivel)) {
+          empresa.isVisivel = false;
+        }
+
         // Cadastrar empresa com o endereço
         cadastrarEmpresa(empresa);
       })

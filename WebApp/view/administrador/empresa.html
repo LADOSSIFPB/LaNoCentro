@@ -83,8 +83,6 @@
             </md-input-container>
           </div>
 
-
-
           <!-- Delivery -->
           <md-input-container class="md-block">
               <md-checkbox ng-model="empresa.isDelivery" aria-label="Faz entrega?">
@@ -176,6 +174,36 @@
         </fieldset>
 
         <fieldset>
+          <legend>Mapas</legend>
+          <div layout="row" flex>
+            <!-- Latitude -->
+            <md-input-container class="md-icon-float md-block" flex="50">
+              <label>Latitude</label>
+              <input ng-model="empresa.latitude" name="latitude" type="text">
+              <div ng-messages="cadastrarEmpresaForm.latitude.$error" role="alert">
+                <div ng-messages-include="messages.html"></div>
+              </div>
+            </md-input-container>
+
+            <!-- Longitude -->
+            <md-input-container class="md-icon-float md-block" flex="50">
+              <label>Longitude</label>
+              <input ng-model="empresa.longitude" name="longitude" type="text">
+              <div ng-messages="cadastrarEmpresaForm.longitude.$error" role="alert">
+                <div ng-messages-include="messages.html"></div>
+              </div>
+            </md-input-container>
+          </div>
+
+          <!-- Tempo Real -->
+          <md-input-container class="md-block">
+              <md-checkbox ng-model="empresa.isTempoRealMaps" aria-label="Possui monitoramento em Tempo Real de pessoas?">
+                  A empresa possui monitoramento em Tempo Real de pessoas no GoogleMaps: <b>{{empresa.isTempoRealMaps| yesNo}}</b>.
+              </md-checkbox>
+          </md-input-container>
+        </fieldset>
+
+        <fieldset>
           <legend>Redes Sociais</legend>
           <div layout="row" flex>
             <!-- Instagram -->
@@ -196,6 +224,26 @@
               </div>
             </md-input-container>
           </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Parcerias</legend>
+          <!-- Delivery -->
+          <md-input-container class="md-block">
+              <md-checkbox ng-model="empresa.isPrefeitura" aria-label="Surgiu de uma parceria com uma Prefeitura?">
+                  As informações básicas da Empresa foi originada de uma parceria com uma Prefeitura: <b>{{empresa.isPrefeitura| yesNo}}</b>.
+              </md-checkbox>
+          </md-input-container>
+        </fieldset>
+
+        <fieldset>
+          <legend>Configuração de Sistema</legend>
+          <!-- Delivery -->
+          <md-input-container class="md-block">
+              <md-checkbox ng-model="empresa.isVisivel" aria-label="A empresas será exibida na listagem e busca para o visitante?">
+                  A empresa será exibida na listagem e busca para o visitante: <b>{{empresa.isVisivel| yesNo}}</b>.
+              </md-checkbox>
+          </md-input-container>
         </fieldset>
       </form>
     </md-card-content>
