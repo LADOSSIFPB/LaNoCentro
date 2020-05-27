@@ -33,6 +33,18 @@ var empresaController = function($scope, $mdToast, $state, $stateParams,
       empresa.isDelivery = false;
     }
 
+    if (!(empresa.isTempoRealMaps)) {
+      empresa.isTempoRealMaps = false;
+    }
+
+    if (!(empresa.isPrefeitura)) {
+      empresa.isPrefeitura = false;
+    }
+
+    if (!(empresa.isVisivel)) {
+      empresa.isVisivel = false;
+    }
+    
     empresaApi.atualizar(empresa)
       .then(function(response) {
 

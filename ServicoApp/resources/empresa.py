@@ -102,6 +102,13 @@ class EmpresaResource(Resource):
             telefone = args['telefone']
             instagram = args['instagram']
             facebook = args['facebook']
+            latitude = args['latitude']
+            longitude = args['longitude']
+            is_tempo_real_maps = args['isTempoRealMaps']
+            is_delivery = args['isDelivery']
+            is_prefeitura = args['isPrefeitura']
+            is_visivel = args['isVisivel']
+
 
             # Recovering existing resources
             endereco = EnderecoModel.query.filter_by(id=endereco_id).first()
@@ -117,7 +124,14 @@ class EmpresaResource(Resource):
                             email=email, 
                             telefone=telefone, 
                             instagram=instagram, 
-                            facebook=facebook))
+                            facebook=facebook,
+                            latitude=latitude,
+                            longitude=longitude,
+                            is_tempo_real_maps=is_tempo_real_maps,
+                            is_delivery=is_delivery,
+                            is_prefeitura=is_prefeitura,
+                            is_visivel=is_visivel
+                            ))
                 
             db.session.commit()
 
