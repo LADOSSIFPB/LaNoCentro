@@ -1,24 +1,16 @@
 var homeController = function($scope, $mdToast, $state,
-  empresaApi, contatoApi, toastUtil) {
+  empresaApi, contatoApi, cidadeApi, toastUtil) {
 
   $scope.empresas = [];
   $scope.selectedEmpresa = [];
+  $scope.cidades = []
   $scope.contato = {};
 
-  $scope.listar = function() {
-    empresaApi.listar()
-      .then(function(response) {
-        $scope.empresas = response.data;
-      })
-      .catch(function(error) {
-        // Mensagem
-        toastUtil.showToast('Problema para exibir a lista das Empresas.');
-      });
-  };
+  $scope.pesquisar = function(nome, cidade) {
 
-  $scope.pesquisar = function(nome) {
-    if (nome.length >= 3) {
-      empresaApi.buscarPorNome(nome)
+    if ((!nome && cidade)
+      ||  (nome.length >= 3)) {
+      empresaApi.buscar(nome, cidade)
         .then(function(response) {
           $scope.empresas = response.data;
         })
@@ -69,7 +61,27 @@ var homeController = function($scope, $mdToast, $state,
     $scope.enviarContatoForm.$setValidity();
   }
 
-  $scope.listar();
+  function carregamentoInicial() {
+    empresaApi.listar()
+      .then(function(response) {
+        $scope.empresas = response.data;
+      })
+      .catch(function(error) {
+        let message = error.data.message;
+        toastUtil.showErrosValidation(message);
+      });
+
+    cidadeApi.listar()
+      .then(function(response) {
+        $scope.cidades = response.data;
+      })
+      .catch(function(error) {
+        let message = error.data.message;
+        toastUtil.showErrosValidation(message);
+      });
+  }
+
+  carregamentoInicial();
 
   // Paginação da tabela.
   $scope.query = {

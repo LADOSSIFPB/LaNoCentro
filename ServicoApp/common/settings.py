@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 # Autenticação
 secret_key = 'ifpbinfo'
@@ -17,3 +18,8 @@ SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://{}:{}@localhost/{}?charset=utf
 )
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 SQLALCHEMY_BINDS = {}
+SQLALCHEMY_ECHO = False
+
+# Diretório para upload de imagens
+home = str(Path.home())
+UPLOAD_FOLDER = '%s/UPLOAD_LANOCENTRO'%(home)

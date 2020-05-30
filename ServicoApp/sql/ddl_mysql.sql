@@ -121,16 +121,16 @@ ALTER TABLE tb_empresa ADD longitude DECIMAL(11, 8);
 ALTER TABLE tb_empresa ADD is_tempo_real_maps BOOLEAN DEFAULT 0;
 ALTER TABLE tb_empresa ADD is_visivel BOOLEAN DEFAULT 0;
  
-CREATE TABLE `tb_historico_movimento` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fk_id_empresa` int(11) NOT NULL,
-  `percentual_atual` int(11) NOT NULL,
-  `percentual_esperado` int(11) NOT NULL,
-  `dt_insercao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `fk_id_empresa` (`fk_id_empresa`),
-  CONSTRAINT `tb_historico_movimento_ibfk_1` FOREIGN KEY (`fk_id_empresa`) REFERENCES `tb_empresa` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  CREATE TABLE `tb_historico_movimento` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `fk_id_empresa` int(11) NOT NULL,
+    `percentual_atual` int(11) NOT NULL,
+    `percentual_esperado` int(11) NOT NULL,
+    `dt_insercao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`),
+    KEY `fk_id_empresa` (`fk_id_empresa`),
+    CONSTRAINT `tb_historico_movimento_ibfk_1` FOREIGN KEY (`fk_id_empresa`) REFERENCES `tb_empresa` (`id`)
+  ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Table structure for table `tb_empresa_produto`

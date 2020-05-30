@@ -1,6 +1,6 @@
 from flask_restful import Resource, marshal_with, reqparse, current_app, abort, marshal
 from common.database import db
-from sqlalchemy import exc
+from sqlalchemy import exc, and_
 from models.empresa import EmpresaModel, empresa_campos
 from models.endereco import EnderecoModel
 from models.natureza import NaturezaModel
@@ -27,11 +27,31 @@ class EmpresasResource(Resource):
     # GET /empresas
     @marshal_with(empresa_campos)
     def get(self):
+
         current_app.logger.info("Get - Empresas")
-        empresas = EmpresaModel.query\
-            .filter_by(is_deleted=False)\
-            .all()
+        
+        parser_param = reqparse.RequestParser()
+        parser_param.add_argument('nome', type=str, required=False, help='Especifique um nome da Empresa válido.')
+        parser_param.add_argument('id_cidade', type=int, required=False, help='Especifique um código de Cidade válido.')
+        args = parser_param.parse_args()
+
+        nome = args.get('nome')
+        cidade_id = args.get('id_cidade')
+
+        current_app.logger.info("Nome %s | Cidade: %s"%(nome, cidade_id))
+
+        query = db.session.query(EmpresaModel).filter_by(is_deleted=False)
+
+        if(nome):
+            query = query.filter(and_(EmpresaModel.nome.ilike('%' + nome + '%')))
+
+        if(cidade_id):
+            query = query.join(EnderecoModel).filter(and_(EnderecoModel.fk_id_cidade==cidade_id))
+
+        empresas = query.all()
+
         return empresas, 200
+
 
     # POST /empresas
     def post(self):
@@ -173,9 +193,6 @@ class EmpresaNomeResource(Resource):
         query = db.session.query(EmpresaModel).filter(EmpresaModel.nome.ilike('%' + nome + '%'))\
             .filter_by(is_deleted=False)
 
-        if(cidade_id):
-            query = query.filter(EnderecoModel.fk_id_cidade==cidade_id)
+        empresas = query.all()
 
-        predios = query.all()
-
-        return predios, 200
+        return empresas, 200

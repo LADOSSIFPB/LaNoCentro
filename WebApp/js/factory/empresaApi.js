@@ -15,8 +15,19 @@ var empresaFactory = function($http, serviceCfg) {
     return $http.get(baseUrl + "/empresas/" + encodeURI(id));
   };
 
-  var _buscarPorNome = function(nome) {
-    return $http.get(baseUrl + "/empresas/nome/" + encodeURI(nome));
+  var _buscar = function(nome, cidade) {
+
+    let params = {};
+
+    if (nome) {
+      params.nome = nome;
+    }
+
+    if (cidade) {
+      params.id_cidade = cidade.id;
+    }
+
+    return $http.get(baseUrl + "/empresas", {params});
   }
 
   var _atualizar = function(empresa) {
@@ -27,7 +38,7 @@ var empresaFactory = function($http, serviceCfg) {
     cadastrar: _cadastrar,
     listar: _listar,
     pesquisarPorId: _pesquisarPorId,
-    buscarPorNome: _buscarPorNome,
+    buscar: _buscar,
     atualizar:_atualizar
   };
 }

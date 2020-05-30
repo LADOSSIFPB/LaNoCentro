@@ -9,8 +9,10 @@ from resources.empresa import *
 from resources.cidade import *
 from resources.estado import *
 from resources.natureza import *
-from resources.hello_world import *
 from resources.atividade import *
+from resources.arquivo import *
+from resources.hello_world import *
+
 import sql
 
 app = Flask(__name__)
@@ -20,6 +22,10 @@ app.config['DEBUG'] = DEBUG
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = SQLALCHEMY_TRACK_MODIFICATIONS
 app.config['SQLALCHEMY_BINDS'] = SQLALCHEMY_BINDS
+app.config['SQLALCHEMY_ECHO'] = SQLALCHEMY_ECHO
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+
 
 # Configure logging
 handler = logging.FileHandler(LOGGING_LOCATION)
@@ -58,6 +64,8 @@ api.add_resource(NaturezaResource, '/naturezas/<natureza_id>')
 
 api.add_resource(AtividadesResource, '/atividades')
 api.add_resource(AtividadeResource, '/atividades/<atividade_id>')
+
+api.add_resource(ArquivosResource, '/arquivos')
 
 # Blueprints para Restful.
 app.register_blueprint(api_bp)
