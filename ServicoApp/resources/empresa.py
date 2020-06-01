@@ -33,12 +33,14 @@ class EmpresasResource(Resource):
         parser_param = reqparse.RequestParser()
         parser_param.add_argument('nome', type=str, required=False, help='Especifique um nome da Empresa válido.')
         parser_param.add_argument('id_cidade', type=int, required=False, help='Especifique um código de Cidade válido.')
+        parser_param.add_argument('id_atividade', type=int, required=False, help='Especifique um código de Atividade válido.')
         args = parser_param.parse_args()
 
         nome = args.get('nome')
         cidade_id = args.get('id_cidade')
+        atividade_id = args.get('id_atividade')
 
-        current_app.logger.info("Nome %s | Cidade: %s"%(nome, cidade_id))
+        current_app.logger.info("Nome %s | Cidade: %s | Atividade: %s"%(nome, cidade_id, atividade_id))
 
         query = db.session.query(EmpresaModel).filter_by(is_deleted=False)
 
@@ -48,7 +50,12 @@ class EmpresasResource(Resource):
         if(cidade_id):
             query = query.join(EnderecoModel).filter(and_(EnderecoModel.fk_id_cidade==cidade_id))
 
+        if(atividade_id):
+            query = query.join(AtividadeModel).filter(and_(AtividadeModel.id==atividade_id))
+
         empresas = query.all()
+
+        print(empresas)
 
         return empresas, 200
 

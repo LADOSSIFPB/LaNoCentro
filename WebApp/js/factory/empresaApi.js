@@ -15,7 +15,7 @@ var empresaFactory = function($http, serviceCfg) {
     return $http.get(baseUrl + "/empresas/" + encodeURI(id));
   };
 
-  var _buscar = function(nome, cidade) {
+  var _buscar = function(nome, cidade, atividade) {
 
     let params = {};
 
@@ -25,6 +25,10 @@ var empresaFactory = function($http, serviceCfg) {
 
     if (cidade) {
       params.id_cidade = cidade.id;
+    }
+
+    if (atividade) {
+      params.id_atividade = atividade.id;
     }
 
     return $http.get(baseUrl + "/empresas", {params});

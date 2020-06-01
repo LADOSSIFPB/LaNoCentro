@@ -1,16 +1,18 @@
 var homeController = function($scope, $mdToast, $state,
-  empresaApi, contatoApi, cidadeApi, toastUtil) {
+  empresaApi, contatoApi, cidadeApi, atividadeApi, toastUtil) {
 
   $scope.empresas = [];
   $scope.selectedEmpresa = [];
-  $scope.cidades = []
+  $scope.cidades = [];
+  $scope.atividades = [];
   $scope.contato = {};
 
-  $scope.pesquisar = function(nome, cidade) {
+  $scope.pesquisar = function(nome, cidade, atividade) {
 
-    if ((!nome && cidade)
-      ||  (nome.length >= 3)) {
-      empresaApi.buscar(nome, cidade)
+    if ((!nome && cidade) ||
+        (!nome && atividade) ||
+      (nome.length >= 3)) {
+      empresaApi.buscar(nome, cidade, atividade)
         .then(function(response) {
           $scope.empresas = response.data;
         })
@@ -74,6 +76,15 @@ var homeController = function($scope, $mdToast, $state,
     cidadeApi.listar()
       .then(function(response) {
         $scope.cidades = response.data;
+      })
+      .catch(function(error) {
+        let message = error.data.message;
+        toastUtil.showErrosValidation(message);
+      });
+
+    atividadeApi.listar()
+      .then(function(response) {
+        $scope.atividades = response.data;
       })
       .catch(function(error) {
         let message = error.data.message;
