@@ -14,7 +14,7 @@ class AtividadesResource(Resource):
         atividades = AtividadeModel.query\
             .all()
         return atividades, 200
-    
+
     # POST /atividades
     def post(self):
         current_app.logger.info("Post - Atividade")
@@ -49,3 +49,26 @@ class AtividadeResource(Resource):
             abort(404, message='Atividade {} nao existe'.format(atividade_id))
 
         return atividade, 200
+
+    # PUT /atividades/<id>
+    def put(self, atividade_id):
+        current_app.logger.info("Put - Atividade: %s:" % atividade_id)
+        try:
+            # Parser JSON
+            args = parser.parse_args()
+            current_app.logger.info("Atividade: %s:" % (args))
+
+            # args
+            nome = args['nome']
+
+            AtividadeModel.query\
+                .filter_by(id=atividade_id)\
+                .update(dict(nome = nome))
+            db.session.commit()
+
+        except exc.SQLAlchemyError as e:
+            current_app.logger.error("Exceção")
+            current_app.logger.error(e)
+            return 404
+
+        return 200

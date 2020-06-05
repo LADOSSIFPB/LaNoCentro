@@ -49,3 +49,26 @@ class NaturezaResource(Resource):
             abort(404, message='Natureza {} nao existe'.format(natureza_id))
 
         return natureza, 200
+
+    # PUT /naturezas/<id>
+    def put(self, natureza_id):
+        current_app.logger.info("Put - Natureza: %s:" % natureza_id)
+        try:
+            # Parser JSON
+            args = parser.parse_args()
+            current_app.logger.info("Natureza: %s:" % (args))
+
+            # args
+            tipo = args['tipo']
+
+            NaturezaModel.query\
+                .filter_by(id=natureza_id)\
+                .update(dict(tipo = tipo))
+            db.session.commit()
+
+        except exc.SQLAlchemyError as e:
+            current_app.logger.error("Exceção")
+            current_app.logger.error(e)
+            return 404
+
+        return 200
