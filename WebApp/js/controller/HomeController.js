@@ -10,11 +10,12 @@ var homeController = function($scope, $mdToast, $state,
   $scope.pesquisar = function(nome, cidade, atividade) {
 
     if ((!nome && cidade) ||
-        (!nome && atividade) ||
+      (!nome && atividade) ||
       (nome.length >= 3)) {
       empresaApi.buscar(nome, cidade, atividade)
         .then(function(response) {
-          $scope.empresas = response.data;
+          let empresas = response.data;
+          $scope.empresas = angular.copy(empresas);
         })
         .catch(function(error) {
           toastUtil.showToast('Problema ao pesquisar a(s) Empresa(s).');
@@ -66,7 +67,8 @@ var homeController = function($scope, $mdToast, $state,
   function carregamentoInicial() {
     empresaApi.listar()
       .then(function(response) {
-        $scope.empresas = response.data;
+        let empresas = response.data;
+        $scope.empresas = angular.copy(empresas);
       })
       .catch(function(error) {
         let message = error.data.message;

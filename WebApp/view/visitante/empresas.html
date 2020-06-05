@@ -11,7 +11,7 @@
   </select>
 
   <select ng-model="atividade.id" name="atividade" ng-change="pesquisar(empresa.nome, cidade, atividade)" placeholder="Cidade" aria-label="Cidade" class="browser-default custom-select">
-    <option value="" selected>Atividade</option>
+    <option value="" selected>Atividade Comercial</option>
     <option ng-repeat="atividade in atividades" value="{{atividade.id}}">
       {{atividade.nome}}
     </option>
