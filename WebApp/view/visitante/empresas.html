@@ -31,6 +31,7 @@
     <table md-table md-row-select ng-model="selectedEmpresa">
       <thead md-head>
         <tr md-row>
+          <th md-column>Logotipo</th>
           <th md-column>Nome</th>
           <th md-column>Natureza</th>
           <th md-column>Atividade</th>
@@ -44,13 +45,24 @@
       </thead>
 
       <tbody md-body>
-        <tr md-row md-select="empresa" md-on-select="detalharEmpresa" md-select-id="empresa.id" md-auto-select ng-repeat="empresa in empresas">
+        <tr md-row  md-on-select="detalharEmpresa"
+          ng-repeat="empresa in empresas">
+          <td md-cell>
+            <a href="https://instagram.com/{{empresa.instagram}}" target="_blank">
+              <img ng-src="{{'//:0'}}" default-image="{{empresa.instagram}}" width="100%">
+            </a>
+
+          </td>
           <td md-cell>{{empresa.nome | uppercase}}</td>
           <td md-cell>{{empresa.natureza.tipo | uppercase}}</td>
           <td md-cell>{{empresa.atividade.nome | uppercase}}</td>
           <td md-cell>{{empresa.endereco.cidade.nome | uppercase}}</td>
           <td md-cell>{{empresa.endereco.estado.nome | uppercase}}</td>
-          <td md-cell>{{empresa.telefone | brPhoneNumber}}</td>
+          <td md-cell>
+            <a href="https://api.whatsapp.com/send?phone=55{{contato.telefone}}" target="_blank">
+              {{empresa.telefone | brPhoneNumber}}
+            </a>
+          </td>
           <td md-cell>{{empresa.isDelivery | yesNo}}</td>
           <td md-cell>{{empresa.instagram | uppercase}}</td>
           <td md-cell>{{empresa.facebook | uppercase}}</td>

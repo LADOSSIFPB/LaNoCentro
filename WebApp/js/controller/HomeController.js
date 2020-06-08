@@ -1,5 +1,5 @@
-var homeController = function($scope, $mdToast, $state,
-  empresaApi, contatoApi, cidadeApi, atividadeApi, toastUtil) {
+var homeController = function($scope, $mdToast, $state, 
+  empresaApi, contatoApi, cidadeApi, atividadeApi, instagramApi, toastUtil) {
 
   $scope.empresas = [];
   $scope.selectedEmpresa = [];
@@ -26,6 +26,18 @@ var homeController = function($scope, $mdToast, $state,
   $scope.detalharEmpresa = function(empresa) {
     console.log("Detalhar Empresa");
     console.log(empresa);
+  }
+
+  $scope.onImgLoad = function(user) {
+    console.log("Imagem load..." + user);
+    instagramApi.pesquisarPorUser(user)
+      .then(function(response) {
+        let perfil = response.data;
+      })
+      .catch(function(error) {
+        let message = error.data.message;
+        toastUtil.showErrosValidation(message);
+      });
   }
 
   $scope.enviarContato = function() {
