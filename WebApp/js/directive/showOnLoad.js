@@ -19,7 +19,7 @@ function defaultImage(instagramApi) {
           element.attr('src', perfil.graphql.user.profile_pic_url_hd);
         })
         .catch(function(error) {
-          // Incluir umagem padrão.
+          // Incluir uma imagem padrão.
         });
     })
   }
