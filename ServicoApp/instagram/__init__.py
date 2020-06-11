@@ -22,22 +22,20 @@ def load_profile_photos():
             user_instagram = empresa.instagram
 
             if (user_instagram):
-                r = requests.get('https://www.instagram.com/{user_instagram}/?__a=1'\
-                    .format(user_instagram=user_instagram))
+                r = requests.get('https://www.instagram.com/{0}/?__a=1'\
+                    .format(user_instagram))
                 if(r.status_code==200):
                     json = r.json()
                     user_photo_url_instagram = json['graphql']['user']['profile_pic_url_hd']
                     
-                    current_app.logger.info("Get {user_instagram} - {user_photo_url_instagram}"\
-                        .format(user_instagram=user_instagram,\
-                            user_photo_url_instagram=user_photo_url_instagram))
+                    current_app.logger.info("Get {0} - {1}".format(user_instagram, user_photo_url_instagram))
                     
                     EmpresaModel.query \
                         .filter_by(id=empresa.id) \
                         .update(dict(user_photo_url_instagram=user_photo_url_instagram))                
                     
                     db.session.commit()
-                    current_app.logger.info("Update - {user_instagram}".format(user_instagram))
+                    current_app.logger.info("Update - {0}".format(user_instagram))
 
     except exc.SQLAlchemyError as e:
             current_app.logger.error("Exceção")
