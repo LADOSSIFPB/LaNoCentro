@@ -95,6 +95,14 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
         templateUrl: 'view/administrador/atividade.html',
         controller: 'AtividadeController'
       })
+      // Atividade - Editar
+      .state('administrador.atividade-editar', {
+        url: '/atividade/:id',
+        title: 'Editar Atividade',
+        templateUrl: 'view/administrador/atividade-editar.html',
+        controller: 'AtividadeEditarController',
+        controllerAs: 'AtividadeEditar'
+      })
       // Naturezas
       .state('administrador.naturezas', {
         url: '/naturezas',

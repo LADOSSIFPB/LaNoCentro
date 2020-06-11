@@ -1,4 +1,4 @@
-var empresaController = function($scope, $mdToast, $state, $stateParams,
+var empresaEditarController = function($scope, $mdToast, $state, $stateParams,
   empresaApi, enderecoApi, cidadeApi, estadoApi, naturezaApi, toastUtil, atividadeApi,
   serviceCfg) {
 
@@ -44,16 +44,11 @@ var empresaController = function($scope, $mdToast, $state, $stateParams,
     if (!(empresa.isVisivel)) {
       empresa.isVisivel = false;
     }
-    
+
     empresaApi.atualizar(empresa)
       .then(function(response) {
 
-        // Redirecionamento de página.
-        $state.transitionTo('administrador.empresas', {
-          reload: true,
-          inherit: false,
-          notify: true
-        });
+        redirecionarListagemEmpresas();
 
         // Mensagem
         toastUtil.showSuccessToast('A empresa foi atualizada com sucesso.');
@@ -69,9 +64,9 @@ var empresaController = function($scope, $mdToast, $state, $stateParams,
     let id = $stateParams.id;
 
     if (id <= 0) {
-      redirecionarListagem();
+      redirecionarListagemEmpresas();
     } else {
-      // Recuperar Edital para edição.
+      // Recuperar Empresa para edição.
       empresaApi.pesquisarPorId(id)
         .then(function(response) {
           let empresa = response.data;
@@ -118,8 +113,17 @@ var empresaController = function($scope, $mdToast, $state, $stateParams,
     }
   }
 
-  // Inicializar listagem de campi.
+  function redirecionarListagemEmpresas() {
+    // Redirecionamento de página.
+    $state.transitionTo('administrador.empresas', {
+      reload: true,
+      inherit: false,
+      notify: true
+    });
+  }
+
+  // Inicializar listagem de Empresa.
   carregamentoInicial();
 }
 
-app.controller('EmpresaEditarController', empresaController);
+app.controller('EmpresaEditarController', empresaEditarController);

@@ -15,10 +15,15 @@ var atividadeFactory = function($http, serviceCfg) {
     return $http.get(baseUrl + "/atividades/" + encodeURI(id));
   };
 
+  var _atualizar = function(atividade) {
+    return $http.put(baseUrl + "/atividades/" + atividade.id, atividade);
+  };
+
   return {
     cadastrar: _cadastrar,
     listar: _listar,
-    pesquisarPorId: _pesquisarPorId
+    pesquisarPorId: _pesquisarPorId,
+    atualizar: _atualizar
   };
 }
 
