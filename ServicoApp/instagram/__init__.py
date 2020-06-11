@@ -17,10 +17,10 @@ def load_profile_photos():
         empresas = query.all()
 
         for empresa in empresas:
-            current_app.logger.info("Empresa - {nome}".format(empresa.nome))
+            current_app.logger.info("Empresa - {nome}".format(nome=empresa.nome))
             
             user_instagram = empresa.instagram
-            
+
             if (user_instagram):
                 r = requests.get('https://www.instagram.com/{user_instagram}/?__a=1'\
                     .format(user_instagram=user_instagram))
@@ -29,7 +29,8 @@ def load_profile_photos():
                     user_photo_url_instagram = json['graphql']['user']['profile_pic_url_hd']
                     
                     current_app.logger.info("Get {user_instagram} - {user_photo_url_instagram}"\
-                        .format(user_instagram, user_photo_url_instagram))
+                        .format(user_instagram=user_instagram,\
+                            user_photo_url_instagram=user_photo_url_instagram))
                     
                     EmpresaModel.query \
                         .filter_by(id=empresa.id) \
