@@ -120,6 +120,8 @@ ALTER TABLE tb_empresa ADD latitude DECIMAL(10, 8);
 ALTER TABLE tb_empresa ADD longitude DECIMAL(11, 8);
 ALTER TABLE tb_empresa ADD is_tempo_real_maps BOOLEAN DEFAULT 0;
 ALTER TABLE tb_empresa ADD is_visivel BOOLEAN DEFAULT 0;
+
+ALTER TABLE tb_empresa ADD user_photo_url_instagram TEXT;
  
   CREATE TABLE `tb_historico_movimento` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
