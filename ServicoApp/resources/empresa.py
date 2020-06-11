@@ -14,6 +14,7 @@ parser.add_argument('endereco', type=dict, help="Especifique um endereço válid
 parser.add_argument('email', required=True, help="Especifique um e-mail válido para a Empresa.")
 parser.add_argument('telefone', required=True, help="Especifique um telefone válido para a Empresa.")
 parser.add_argument('instagram', required=False, help="Especifique um instagram válido para a Empresa.")
+parser.add_argument('userPhotoUrlInstagram', required=False, help="Especifique uma URL da foto do Instagram válida para a Empresa.")
 parser.add_argument('facebook', required=False, help="Especifique um facebook válido para a Empresa.")
 parser.add_argument('latitude', required=False, help="Especifique uma latitude válida para a Empresa.")
 parser.add_argument('longitude', required=False, help="Especifique uma longitude válida para a Empresa.")

@@ -16,6 +16,7 @@ empresa_campos = {
     'email': fields.String(attribute='email'),
     'telefone': fields.String(attribute='telefone'),
     'instagram': fields.String(attribute='instagram'),
+    'userPhotoUrlInstagram': fields.String(attribute='user_photo_url_instagram'),    
     'facebook': fields.String(attribute='facebook'),
     'latitude': fields.String(attribute='latitude'),
     'longitude': fields.String(attribute='longitude'),
@@ -38,6 +39,7 @@ class EmpresaModel(db.Model):
     email = db.Column(db.String(255), nullable=False)
     telefone = db.Column(db.String(13), nullable=False)
     instagram = db.Column(db.String(255), nullable=True)
+    user_photo_url_instagram = db.Column(db.Text(), nullable=True)
     facebook = db.Column(db.String(255), nullable=True)
     latitude = db.Column(db.Numeric(10,8), nullable=True)
     longitude = db.Column(db.Numeric(11,8), nullable=True)

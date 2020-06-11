@@ -18,6 +18,24 @@
   </select>
 
   <!--
+  <ui-select ng-model="ctrl.person.selected"
+    theme="select2"
+    on-select="ctrl.onSelectCallback($item, $model)"
+    ng-disabled="ctrl.disabled"
+    title="Escola a Atividade Comercial">
+    <ui-select-match placeholder="Selecione uma Atividade Comercial na lista ou pesquise pelo nome.">
+      {{$select.selected.name}}
+    </ui-select-match>
+    <ui-select-choices repeat="atividade in atividades | propsFilter: {nome: $select.search}">
+      <div ng-bind-html="person.name | highlight: $select.search"></div>
+      <small>
+        email: {{person.email}}
+        age: <span ng-bind-html="''+person.age | highlight: $select.search"></span>
+      </small>
+    </ui-select-choices>
+  </ui-select>
+
+
   <div class="input-group-append">
     <button class="btn btn-md btn-outline-mdb-color m-0 px-3 py-2 z-depth-0 waves-effect" type="button">Pesquisa</button>
   </div>
@@ -45,11 +63,10 @@
       </thead>
 
       <tbody md-body>
-        <tr md-row  md-on-select="detalharEmpresa"
-          ng-repeat="empresa in empresas">
+        <tr md-row md-on-select="detalharEmpresa" ng-repeat="empresa in empresas">
           <td md-cell>
             <a href="https://instagram.com/{{empresa.instagram}}" target="_blank">
-              <img ng-src="{{'//:0'}}" show-on-load="{{empresa.instagram}}" width="100%">
+              <img ng-src="{{empresa.userPhotoUrlInstagram}}" show-on-load="{{empresa.instagram}}" width="100%">
             </a>
           </td>
           <td md-cell>{{empresa.nome | uppercase}}</td>

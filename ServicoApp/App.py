@@ -14,6 +14,7 @@ from resources.arquivo import *
 from resources.hello_world import *
 
 import sql
+import instagram
 
 app = Flask(__name__)
 
@@ -73,10 +74,15 @@ app.register_blueprint(api_bp)
 # CORS - requisição multi-clients
 cors = CORS(app, resources={r"/lanocentro/api/*": {"origins": "*"}})
 
-# Importação dos dados do OCS.
-@app.cli.command()
+# Iniciando estrutura do banco de dados.
+@app.cli.command("create_db")
 def create_db():
     sql.run()
+
+# Carregando url das imagens do perfil do instagram.
+@app.cli.command("import_profile_pic_instagram")
+def import_profile_pic_instagram():
+    instagram.run()
 
 if __name__ == '__main__':
     app.run(threaded=True)
