@@ -3,6 +3,7 @@ from flask_restful import Api
 from flask_cors import CORS
 from common.settings import *
 from common.logging import *
+from resources.usuario import *
 from resources.endereco import *
 from resources.contato import *
 from resources.empresa import *
@@ -42,6 +43,9 @@ api = Api(api_bp, prefix='/lanocentro/api')
 
 # Recursos
 api.add_resource(HelloWorld, '/')
+
+api.add_resource(UsuariosResource, '/usuarios')
+api.add_resource(LoginResource, '/login')
 
 api.add_resource(EnderecosResource, '/enderecos')
 api.add_resource(EnderecoResource, '/enderecos/<endereco_id>')

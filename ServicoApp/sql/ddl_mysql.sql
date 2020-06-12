@@ -123,16 +123,16 @@ ALTER TABLE tb_empresa ADD is_visivel BOOLEAN DEFAULT 0;
 
 ALTER TABLE tb_empresa ADD user_photo_url_instagram TEXT;
  
-  CREATE TABLE `tb_historico_movimento` (
-    `id` int(11) NOT NULL AUTO_INCREMENT,
-    `fk_id_empresa` int(11) NOT NULL,
-    `percentual_atual` int(11) NOT NULL,
-    `percentual_esperado` int(11) NOT NULL,
-    `dt_insercao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`),
-    KEY `fk_id_empresa` (`fk_id_empresa`),
-    CONSTRAINT `tb_historico_movimento_ibfk_1` FOREIGN KEY (`fk_id_empresa`) REFERENCES `tb_empresa` (`id`)
-  ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+CREATE TABLE `tb_historico_movimento` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fk_id_empresa` int(11) NOT NULL,
+  `percentual_atual` int(11) NOT NULL,
+  `percentual_esperado` int(11) NOT NULL,
+  `dt_insercao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `fk_id_empresa` (`fk_id_empresa`),
+  CONSTRAINT `tb_historico_movimento_ibfk_1` FOREIGN KEY (`fk_id_empresa`) REFERENCES `tb_empresa` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Table structure for table `tb_empresa_produto`
@@ -281,6 +281,15 @@ CREATE TABLE `tb_atividade` (
 
 INSERT INTO `lanocentro`.`tb_atividade` (`nome`) 
 VALUES ('Beleza e cuidados pessoais');
+
+CREATE TABLE tb_usuario(
+   id INTEGER NOT NULL AUTO_INCREMENT,
+   login VARCHAR(40),
+   senha VARCHAR(255),
+   PRIMARY KEY(id)
+);
+
+INSERT INTO usuario VALUES (1, 'admin', 'pbkdf2:sha256:50000$cP1FNukc$2c623fc77f945a53a39d2412cdf8a9031387c165b0a6c9ed3bbba7be21827f4a');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
