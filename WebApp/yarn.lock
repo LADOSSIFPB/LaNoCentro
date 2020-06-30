@@ -184,3 +184,8 @@ ui-leaflet@^1.0.3:
     angular "1.x"
     angular-simple-logger "~0.1.4"
     leaflet "0.7.x"
+
+ui-select@^0.19.8:
+  version "0.19.8"
+  resolved "https://registry.yarnpkg.com/ui-select/-/ui-select-0.19.8.tgz#74860848a7fd8bc494d9856d2f62776ea98637c1"
+  integrity sha1-dIYISKf9i8SU2YVtL2J3bqmGN8E=

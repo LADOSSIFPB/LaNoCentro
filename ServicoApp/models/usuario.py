@@ -35,7 +35,7 @@ class UsuarioModel(db.Model):
         return check_password_hash(self.senha, value)
 
     def generate_auth_token(self, expiration=None):
-        s = Serializer(secret_key, expires_in=expiration)
+        s = Serializer(secret_key, expires_in=expiration) # TimedJSONWebSignatureSerializer
         dumps = s.dumps({'id': self.id})
         self.token = dumps.decode('ascii')
         return dumps
@@ -44,6 +44,7 @@ class UsuarioModel(db.Model):
     def verify_auth_token(token):
         current_app.logger.info("Token: %s" % (token))
         s = Serializer(secret_key)
+        print(s)
         try:
             data = s.loads(token)
         except SignatureExpired:

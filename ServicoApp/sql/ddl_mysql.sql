@@ -268,6 +268,9 @@ CREATE TABLE `tb_produto` (
 
 LOCK TABLES `tb_produto` WRITE;
 /*!40000 ALTER TABLE `tb_produto` DISABLE KEYS */;
+ALTER TABLE tb_produto ADD is_visivel BOOLEAN DEFAULT 0;
+ALTER TABLE tb_produto ADD is_deleted BOOLEAN DEFAULT 0;
+
 /*!40000 ALTER TABLE `tb_produto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
