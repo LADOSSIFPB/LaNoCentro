@@ -14,7 +14,7 @@ DEBUG = True
 SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://{}:{}@localhost/{}?charset=utf8&use_unicode=1'.format(
     usuario,
     senha,
-    'lanocentro_20200605'
+    'lanocentro'
 )
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 SQLALCHEMY_BINDS = {}

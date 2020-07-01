@@ -56,6 +56,7 @@ class LoginResource(Resource):
             # args
             login = args['login']
             senha = args['senha']
+            current_app.logger.info("Usuario(%s)"%(login))
             usuario = UsuarioModel.query.filter_by(login=login)\
                 .first()
 

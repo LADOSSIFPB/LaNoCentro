@@ -17,6 +17,5 @@ def verificar_senha(login_or_token, senha):
         if not usuario or not usuario.verificar_senha(senha):
             return False
     # Usuário autenticado
-    print("Aqui - vs")
     g.user = usuario
     return True
