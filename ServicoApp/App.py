@@ -13,6 +13,7 @@ from resources.natureza import *
 from resources.atividade import *
 from resources.arquivo import *
 from resources.hello_world import *
+from resources.produto import *
 
 import sql
 import instagram
@@ -69,6 +70,9 @@ api.add_resource(NaturezaResource, '/naturezas/<natureza_id>')
 
 api.add_resource(AtividadesResource, '/atividades')
 api.add_resource(AtividadeResource, '/atividades/<atividade_id>')
+
+api.add_resource(ProdutosResource, '/produtos')
+api.add_resource(ProdutoResource, '/produtos/<produto_id>')
 
 api.add_resource(ArquivosResource, '/arquivos')
 
