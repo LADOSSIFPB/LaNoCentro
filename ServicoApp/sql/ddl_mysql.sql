@@ -270,9 +270,13 @@ LOCK TABLES `tb_produto` WRITE;
 /*!40000 ALTER TABLE `tb_produto` DISABLE KEYS */;
 ALTER TABLE tb_produto ADD is_visivel BOOLEAN DEFAULT 0;
 ALTER TABLE tb_produto ADD is_deleted BOOLEAN DEFAULT 0;
-
+ALTER TABLE tb_produto ADD dt_insercao TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
 /*!40000 ALTER TABLE `tb_produto` ENABLE KEYS */;
 UNLOCK TABLES;
+
+ALTER TABLE tb_produto ADD fk_id_empresa int(11) NOT NULL;
+ALTER TABLE tb_produto ADD FOREIGN KEY (fk_id_empresa) REFERENCES tb_empresa(id);
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 CREATE TABLE `tb_atividade` (
@@ -292,7 +296,7 @@ CREATE TABLE tb_usuario(
    PRIMARY KEY(id)
 );
 
-INSERT INTO usuario VALUES (1, 'admin', 'pbkdf2:sha256:50000$cP1FNukc$2c623fc77f945a53a39d2412cdf8a9031387c165b0a6c9ed3bbba7be21827f4a');
+INSERT INTO tb_usuario VALUES (1, 'admin', 'pbkdf2:sha256:50000$cP1FNukc$2c623fc77f945a53a39d2412cdf8a9031387c165b0a6c9ed3bbba7be21827f4a');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
