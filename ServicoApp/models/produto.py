@@ -1,17 +1,18 @@
 from common.database import db
-from models.empresa import EmpresaModel
 from flask_restful import fields
 from sqlalchemy.ext.orderinglist import ordering_list
 from sqlalchemy.sql import func
+from models.empresa import EmpresaModel, empresa_campos
 
 
 produto_campos = {
     'id': fields.Integer(attribute='id'),
     'nome': fields.String(attribute='nome'),
     'descricao': fields.String(attribute='descricao'),
-    'preco': fields.String(attribute='preco'),    
+    'preco': fields.String(attribute='preco'),
     'isVisivel': fields.Boolean(attribute='is_visivel'),
-    'isDeleted': fields.Boolean(attribute='is_deleted') 
+    'isDeleted': fields.Boolean(attribute='is_deleted'),
+    'empresa' : fields.Nested(empresa_campos)
 }
 
 
@@ -32,12 +33,13 @@ class ProdutoModel(db.Model):
         nullable=False)
     empresa = db.relationship('EmpresaModel', backref='empresa', primaryjoin="ProdutoModel.fk_id_empresa==EmpresaModel.id", uselist=False)
 
-def __init__(self, nome, descricao, preco, empresa, is_visivel):
+    def __init__(self, nome, descricao, preco, is_visivel, is_deleted, empresa):
         self.nome = nome
         self.descricao = descricao
         self.preco = preco
-        self.empresa = empresa
         self.is_visivel = is_visivel
+        self.is_deleted = is_deleted
+        self.empresa = empresa
 
-def __str__(self):
-    return '<Produto %r>'%(self.nome) 
+    def __str__(self):
+        return '<Produto %r>'%(self.nome)
