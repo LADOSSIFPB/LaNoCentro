@@ -56,8 +56,6 @@ class EmpresasResource(Resource):
 
         empresas = query.all()
 
-        print(empresas)
-
         return empresas, 200
 
 

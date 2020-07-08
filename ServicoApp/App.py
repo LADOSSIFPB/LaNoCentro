@@ -73,7 +73,6 @@ api.add_resource(AtividadeResource, '/atividades/<atividade_id>')
 
 api.add_resource(ProdutosResource, '/produtos')
 api.add_resource(ProdutoResource, '/produtos/<produto_id>')
-api.add_resource(ProdutoNomeResource, '/produtos/nome/<nome>')
 
 api.add_resource(ArquivosResource, '/arquivos')
 

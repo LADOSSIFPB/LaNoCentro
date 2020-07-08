@@ -24,16 +24,13 @@ class ProdutosResource(Resource):
 
         nome = args.get('nome')
 
-        current_app.logger.info("Nome %s "%(nome))
-
-        query = db.session.query(EmpresaModel).filter_by(is_deleted=False)
+        query = db.session.query(ProdutoModel).filter_by(is_deleted=False)
 
         if(nome):
+            current_app.logger.info("Nome %s "%(nome))
             query = query.filter(and_(ProdutoModel.nome.ilike('%' + nome + '%')))
 
         produtos = query.all()
-
-        print(produtos)
 
         return produtos, 200
 
@@ -112,23 +109,3 @@ class ProdutoResource(Resource):
             return 404
 
         return 204
-
-class ProdutoNomeResource(Resource):
-    # GET /produtos/nome/<nome>?id_cidade=<cidade_id>
-    @marshal_with(produto_campos)
-    def get(self, nome):
-        current_app.logger.info("Get - Produtos por nome")
-
-        parser_param = reqparse.RequestParser()
-        parser_param.add_argument('id_cidade', type=int, required=False, help='Especifique um código de Cidade válido.')
-        args = parser_param.parse_args()
-        cidade_id = args.get('id_cidade')
-
-        current_app.logger.info("Nome %s | Cidade: %s"%(nome, cidade_id))
-
-        query = db.session.query(ProdutoModel).filter(ProdutoModel.nome.ilike('%' + nome + '%'))\
-            .filter_by(is_deleted=False)
-
-        produtos = query.all()
-
-        return produtos, 200
