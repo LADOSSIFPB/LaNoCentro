@@ -1,5 +1,5 @@
 var empresaEditarController = function($scope, $mdToast, $state, $stateParams,
-  empresaApi, enderecoApi, cidadeApi, estadoApi, naturezaApi, toastUtil, atividadeApi,
+  empresaApi, enderecoApi, cidadeApi, estadoApi, naturezaApi, toastUtil, atividadeApi, produtoApi,
   serviceCfg) {
 
   $scope.empresa = {};
@@ -8,6 +8,7 @@ var empresaEditarController = function($scope, $mdToast, $state, $stateParams,
   $scope.estados = [];
   $scope.naturezas = [];
   $scope.atividades = [];
+  $scope.produtos = [];
 
   $scope.atualizar = function() {
     // Criar uma cópia da empresa e endereco do $scope.
@@ -60,6 +61,23 @@ var empresaEditarController = function($scope, $mdToast, $state, $stateParams,
       });
   }
 
+  $scope.adicionarProduto = function () {
+
+        var _idEmpresa = $scope.empresa.id;
+
+        if (!(stringUtil.isEmpty(_idEmpresa))) {
+            $state.transitionTo('administrador.adicionar-produto', {
+                id: _idEmpresa
+            }, {
+                reload: true,
+                inherit: false,
+                notify: true
+            });
+        } else {
+            toastUtil.showToast("Impossível carregar os dados da Empresa para cadastrar o Produto.");
+        }
+    }
+
   function carregamentoInicial() {
     let id = $stateParams.id;
 
@@ -72,6 +90,14 @@ var empresaEditarController = function($scope, $mdToast, $state, $stateParams,
           let empresa = response.data;
           $scope.empresa = empresa;
           $scope.endereco = empresa.endereco;
+        })
+        .catch(function(error) {
+          toastUtil.showErrorToast(error);
+        });
+
+      produtoApi.listarEmpresaId(id)
+        .then(function(response) {
+          let produtos = response.data;
         })
         .catch(function(error) {
           toastUtil.showErrorToast(error);

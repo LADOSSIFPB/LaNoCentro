@@ -116,6 +116,13 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
         title: 'Cadastrar Natureza',
         templateUrl: 'view/administrador/natureza.html',
         controller: 'NaturezaController'
+      })
+      // Produto
+      .state('administrador.adicionar-produto', {
+        url: '/empresa/:id/produto',
+        title: 'Cadastrar Produto',
+        templateUrl: 'view/administrador/produto.html',
+        controller: 'ProdutoController'
       });
   })
   //take all whitespace out of string

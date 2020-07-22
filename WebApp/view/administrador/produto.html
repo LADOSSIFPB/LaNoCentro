@@ -1,0 +1,54 @@
+<md-content flex layout-padding>
+    <md-card flex layout-padding>
+
+        <md-card-header>
+            <md-card-avatar>
+                <ng-md-icon icon="assignment_turned_in" size="42"></ng-md-icon>
+            </md-card-avatar>
+
+            <md-card-header-text>
+                <span class="md-title">Adicionar Produto à Empresa</span>
+                <span class="md-subhead">Clique no botão Salvar para alterar as informações básicas do Produto.</span>
+            </md-card-header-text>
+
+            <!-- Salvar alterações -->
+            <md-card-icon-actions>
+                <md-button aria-label="Salvar Alterações dos dados básicos do Produto." ng-click="adicionar()">
+                    <md-tooltip md-direction="bottom">Salvar Produto</md-tooltip>
+                    <ng-md-icon icon="save" size="42"></ng-md-icon>
+                </md-button>
+            </md-card-icon-actions>
+        </md-card-header>
+
+        <md-card-content layout="column">
+            <form name="cadastrarProdutoForm" layout="column" novalidate>
+
+                <!-- Nome -->
+                <md-input-container class="md-icon-float md-block">
+                    <label>Nome</label>
+                    <input ng-model="produto.nome" type="text" required>
+                </md-input-container>
+
+                <!-- Descrição -->
+                <md-input-container class="md-icon-float md-block">
+                    <label>Descrição</label>
+                    <input ng-model="produto.descricao" type="text" required>
+                </md-input-container>
+
+                <!-- Preço -->
+                <md-input-container class="md-icon-float md-block">
+                    <label>Preço</label>
+                    <input ng-model="produto.preco" type="text" required>
+                </md-input-container>
+
+                <!-- Empresa -->
+                <md-input-container class="md-icon-float md-block">
+                    <label>Empresa</label>
+                    <input ng-model="produto.empresa.id" type="number" required>
+                </md-input-container>
+
+
+            </form>
+        </md-card-content>
+    </md-card>
+</md-content>
