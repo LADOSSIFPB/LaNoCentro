@@ -44,45 +44,44 @@
 
 <md-card>
   <md-table-container>
-
     <!-- Tabela -->
-    <div class="table-responsive">
+    <div class="#">
       <table class="table" md-table md-row-select ng-model="selectedEmpresa">
-        <thead md-head>
-          <tr md-row>
-            <th md-column>Logotipo</th>
-            <th md-column>Nome</th>
-            <th md-column>Natureza</th>
-            <th md-column>Atividade</th>
-            <th md-column>Município</th>
-            <th md-column>UF</th>
-            <th md-column>Telefone</th>
-            <th md-column>Delivery</th>
-            <th md-column>Instagram</th>
-            <th md-column>Facebook</th>
+        <thead >
+          <tr>
+            <th>Logotipo</th>
+            <th>Nome</th>
+            <th>Natureza</th>
+            <th>Atividade</th>
+            <th>Município</th>
+            <th>UF</th>
+            <th>Telefone</th>
+            <th>Delivery</th>
+            <th>Instagram</th>
+            <th>Facebook</th>
           </tr>
         </thead>
 
-        <tbody md-body>
-          <tr md-row md-on-select="detalharEmpresa" ng-repeat="empresa in empresas">
-            <td md-cell>
+        <tbody >
+          <tr md-on-select="detalharEmpresa" ng-repeat="empresa in empresas">
+            <td>
               <a href="https://instagram.com/{{empresa.instagram}}" target="_blank">
                 <img ng-src="{{empresa.userPhotoUrlInstagram}}" show-on-load="{{empresa.instagram}}" width="100%">
               </a>
             </td>
-            <td md-cell>{{empresa.nome | uppercase}}</td>
-            <td md-cell>{{empresa.natureza.tipo | uppercase}}</td>
-            <td md-cell>{{empresa.atividade.nome | uppercase}}</td>
-            <td md-cell>{{empresa.endereco.cidade.nome | uppercase}}</td>
-            <td md-cell>{{empresa.endereco.estado.nome | uppercase}}</td>
-            <td md-cell>
+            <td>{{empresa.nome | uppercase}}</td>
+            <td>{{empresa.natureza.tipo | uppercase}}</td>
+            <td>{{empresa.atividade.nome | uppercase}}</td>
+            <td>{{empresa.endereco.cidade.nome | uppercase}}</td>
+            <td>{{empresa.endereco.estado.nome | uppercase}}</td>
+            <td>
               <a href="https://api.whatsapp.com/send?phone=55{{contato.telefone}}" target="_blank">
                 {{empresa.telefone | brPhoneNumber}}
               </a>
             </td>
-            <td md-cell>{{empresa.isDelivery | yesNo}}</td>
-            <td md-cell>{{empresa.instagram | uppercase}}</td>
-            <td md-cell>{{empresa.facebook | uppercase}}</td>
+            <td>{{empresa.isDelivery | yesNo}}</td>
+            <td>{{empresa.instagram | uppercase}}</td>
+            <td>{{empresa.facebook | uppercase}}</td>
           </tr>
         </tbody>
       </table>
