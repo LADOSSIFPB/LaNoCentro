@@ -2,6 +2,8 @@ table {
   width: 100%;
   border-collapse: collapse;
 }
+
+
 td, th {
   padding: 6px;
   text-align: center;
@@ -12,7 +14,7 @@ This query will take effect for any screen smaller than 760px
 and also iPads specifically.
 */
 @media
-only screen and (max-width: 760px),
+only screen and (max-width: 1024px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
 
 	/* Force table to not be like tables anymore */
@@ -37,7 +39,8 @@ only screen and (max-width: 760px),
 		padding-left: 50%;
 	}
 
-	td:before {
+
+	td::before {
 		/* Now like a table header */
 		position: absolute;
 		/* Top/left values mimic padding */
@@ -45,6 +48,8 @@ only screen and (max-width: 760px),
 		left: 17px;
 		width: 40%;
 		padding-right: 100px;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 		white-space: nowrap;
 	}
 
